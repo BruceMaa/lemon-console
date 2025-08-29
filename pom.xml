@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>top.continew.starter</groupId>
+        <artifactId>continew-starter</artifactId>
+        <version>2.13.4</version>
+    </parent>
+
+    <groupId>cn.onesorigin</groupId>
+    <artifactId>lemon-console</artifactId>
+    <version>${revision}</version>
+    <packaging>pom</packaging>
+
+    <modules>
+        <module>lemon-console-server</module>
+        <module>lemon-console-system</module>
+        <module>lemon-console-common</module>
+    </modules>
+
+    <properties>
+        <!-- 项目版本号 -->
+        <revision>1.0.0-SNAPSHOT</revision>
+    </properties>
+
+    <dependencyManagement>
+        <dependencies>
+            <!-- API 模块（存放 Controller 层代码，打包部署的模块） -->
+            <dependency>
+                <groupId>cn.onesorigin</groupId>
+                <artifactId>lemon-console-server</artifactId>
+                <version>${revision}</version>
+            </dependency>
+
+            <!-- 系统管理模块（存放系统管理模块相关功能，例如：部门管理、角色管理、用户管理等） -->
+            <dependency>
+                <groupId>cn.onesorigin</groupId>
+                <artifactId>lemon-console-system</artifactId>
+                <version>${revision}</version>
+            </dependency>
+
+            <!-- 公共模块（存放公共工具类，公共配置等） -->
+            <dependency>
+                <groupId>cn.onesorigin</groupId>
+                <artifactId>lemon-console-common</artifactId>
+                <version>${revision}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <dependencies>
+        <!-- Hutool（小而全的 Java 工具类库，通过静态方法封装，降低相关 API 的学习成本，提高工作效率，使 Java 拥有函数式语言般的优雅，让 Java 语言也可以"甜甜的"） -->
+        <dependency>
+            <groupId>cn.hutool</groupId>
+            <artifactId>hutool-all</artifactId>
+        </dependency>
+
+        <!-- Lombok（在 Java 开发过程中用注解的方式，简化了 JavaBean 的编写，避免了冗余和样板式代码，让编写的类更加简洁） -->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <optional>true</optional> <!-- 表示依赖不会被传递 -->
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <!-- 编译插件 -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <compilerArgument>-parameters</compilerArgument>
+                </configuration>
+            </plugin>
+            <!-- 单元测试相关插件 -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <configuration>
+                    <!-- 跳过单元测试 -->
+                    <skip>true</skip>
+                </configuration>
+            </plugin>
+            <!-- 统一版本号插件 -->
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>flatten-maven-plugin</artifactId>
+                <configuration>
+                    <updatePomFile>true</updatePomFile>
+                    <flattenMode>resolveCiFriendliesOnly</flattenMode>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>flatten</id>
+                        <phase>process-resources</phase>
+                        <goals>
+                            <goal>flatten</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>flatten-clean</id>
+                        <phase>clean</phase>
+                        <goals>
+                            <goal>clean</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
+    <!-- 依赖仓库配置 -->
+    <repositories>
+        <repository>
+            <id>huawei-mirror</id>
+            <name>HuaweiCloud Mirror</name>
+            <url>https://mirrors.huaweicloud.com/repository/maven/</url>
+        </repository>
+        <repository>
+            <id>ali-mirror</id>
+            <name>AliYun Mirror</name>
+            <url>https://maven.aliyun.com/repository/public/</url>
+        </repository>
+    </repositories>
+
+    <!-- 插件仓库配置 -->
+    <pluginRepositories>
+        <pluginRepository>
+            <id>huawei-mirror</id>
+            <name>HuaweiCloud Mirror</name>
+            <url>https://mirrors.huaweicloud.com/repository/maven/</url>
+        </pluginRepository>
+        <pluginRepository>
+            <id>ali-mirror</id>
+            <name>AliYun Mirror</name>
+            <url>https://maven.aliyun.com/repository/public/</url>
+        </pluginRepository>
+    </pluginRepositories>
+</project>
