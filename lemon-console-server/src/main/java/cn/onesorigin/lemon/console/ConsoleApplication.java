@@ -1,4 +1,4 @@
-package cn.onesorigin.console;
+package cn.onesorigin.lemon.console;
 
 import cn.hutool.core.net.NetUtil;
 import cn.hutool.core.util.URLUtil;
@@ -60,9 +60,9 @@ public class ConsoleApplication implements ApplicationRunner {
         //if (!knife4jProperties.isProduction()) {
         //    log.info("接口文档: {}/doc.html", baseUrl);
         //}
-        log.info("常见问题: https://continew.top/admin/faq.html");
-        log.info("更新日志: https://continew.top/admin/changelog/");
-        log.info("ContiNew Admin: 持续迭代优化的，高质量多租户中后台管理系统框架");
+        //log.info("常见问题: https://continew.top/admin/faq.html");
+        //log.info("更新日志: https://continew.top/admin/changelog/");
+        //log.info("ContiNew Admin: 持续迭代优化的，高质量多租户中后台管理系统框架");
         log.info("--------------------------------------------------------");
     }
 

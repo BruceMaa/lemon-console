@@ -9,7 +9,7 @@ application:
   version: 1.0.0
   starter: 2.13.4
   # 基本包
-  base-package: cn.onesorigin.console
+  base-package: cn.onesorigin.lemon.console
   ## 作者信息配置
   contact:
     name: maqiang
@@ -189,3 +189,32 @@ mybatis-plus:
     pagination:
       enabled: true
       db-type: POSTGRE_SQL
+
+# 验证码配置
+captcha:
+  # 验证码类型 CIRCLE-圆圈干扰验证码|GIF-Gif验证码|LINE-干扰线验证码|SHEAR-扭曲干扰验证码
+  type: CIRCLE
+  # 验证码宽度
+  width: 120
+  # 验证码高度
+  height: 40
+  # 验证码干扰元素个数
+  interfere-count: 2
+  # 文本透明度(0.0-1.0)
+  text-alpha: 0.8
+  # 验证码字符配置
+  code:
+    # 验证码字符类型 math-算术|random-随机字符
+    type: math
+    # 验证码字符长度，type=算术时，表示运算位数(1:个位数运算 2:十位数运算)；type=随机字符时，表示字符个数
+    length: 1
+  # 验证码字体
+  font:
+    # 字体名称 Dialog|DialogInput|Monospaced|Serif|SansSerif
+    name: SansSerif
+    # 字体样式 0-普通|1-粗体|2-斜体
+    style: 1
+    # 字体大小
+    size: 24
+  # 验证码有效期(秒)
+  expire-seconds: 120
