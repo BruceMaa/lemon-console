@@ -15,6 +15,7 @@ import org.springframework.boot.autoconfigure.web.ServerProperties;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 import top.continew.starter.core.autoconfigure.application.ApplicationProperties;
+import top.continew.starter.extension.crud.annotation.EnableCrudApi;
 import top.continew.starter.web.annotation.EnableGlobalResponse;
 import top.continew.starter.web.model.R;
 
@@ -26,6 +27,7 @@ import top.continew.starter.web.model.R;
  */
 @Slf4j
 @RequiredArgsConstructor
+@EnableCrudApi
 @EnableGlobalResponse
 @RestController
 @SpringBootApplication

@@ -1,4 +1,4 @@
-package cn.onesorigin.lemon.console.common.config;
+package cn.onesorigin.lemon.console.common.config.captcha;
 
 import cn.onesorigin.lemon.console.common.enums.CaptchaTypeEnum;
 import lombok.Data;

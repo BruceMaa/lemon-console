@@ -1,4 +1,4 @@
-package cn.onesorigin.lemon.console.common.config;
+package cn.onesorigin.lemon.console.common.config.captcha;
 
 import cn.hutool.captcha.generator.CodeGenerator;
 import cn.hutool.captcha.generator.MathGenerator;

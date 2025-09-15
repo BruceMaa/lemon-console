@@ -5,12 +5,12 @@ import cn.hutool.captcha.CaptchaUtil;
 import cn.hutool.captcha.generator.CodeGenerator;
 import cn.hutool.core.date.LocalDateTimeUtil;
 import cn.hutool.core.util.IdUtil;
-import cn.onesorigin.lemon.console.common.config.CaptchaProperties;
+import cn.onesorigin.lemon.console.auth.model.resp.CaptchaResp;
+import cn.onesorigin.lemon.console.common.config.captcha.CaptchaProperties;
 import cn.onesorigin.lemon.console.common.constant.CacheConstants;
 import cn.onesorigin.lemon.console.common.constant.GlobalConstants;
 import cn.onesorigin.lemon.console.common.constant.OptionConstants;
 import cn.onesorigin.lemon.console.common.enums.CaptchaTypeEnum;
-import cn.onesorigin.lemon.console.auth.model.resp.CaptchaResp;
 import cn.onesorigin.lemon.console.system.service.OptionService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -32,7 +32,7 @@ import java.time.LocalDateTime;
 @Tag(name = "验证码 API")
 @Validated
 @RestController
-@RequestMapping("/captcha")
+@RequestMapping(path = "/captcha")
 public class CaptchaController {
 
     private final OptionService optionService;

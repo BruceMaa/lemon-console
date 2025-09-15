@@ -22,7 +22,7 @@ public class CaptchaResp {
      * 验证码标识
      */
     @Schema(description = "验证码标识", example = "123456")
-    String uuid;
+    String captchaKey;
 
     /**
      * 验证码图片
@@ -45,14 +45,14 @@ public class CaptchaResp {
     /**
      * 构建验证码信息
      *
-     * @param uuid       验证码标识
+     * @param captchaKey       验证码标识
      * @param img        验证码图片
      * @param expireTime 过期时间戳
      * @return 验证码响应参数
      */
-    public static CaptchaResp of(String uuid, String img, Long expireTime) {
+    public static CaptchaResp of(String captchaKey, String img, Long expireTime) {
         return CaptchaResp.builder()
-                .uuid(uuid)
+                .captchaKey(captchaKey)
                 .img(img)
                 .expireTime(expireTime)
                 .isEnabled(true)

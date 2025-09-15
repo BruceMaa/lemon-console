@@ -24,6 +24,9 @@
     <properties>
         <!-- 项目版本号 -->
         <revision>1.0.0-SNAPSHOT</revision>
+        <org.mapstruct.version>1.6.3</org.mapstruct.version>
+        <lombok-mapstruct-binding.version>0.2.0</lombok-mapstruct-binding.version>
+        <jdk.version>21</jdk.version>
     </properties>
 
     <dependencyManagement>
@@ -64,6 +67,13 @@
             <artifactId>lombok</artifactId>
             <optional>true</optional> <!-- 表示依赖不会被传递 -->
         </dependency>
+
+        <!-- MapStruct（Java 注释处理器，用于生成类型安全的映射代码，避免手动编写重复的映射代码） -->
+        <dependency>
+            <groupId>org.mapstruct</groupId>
+            <artifactId>mapstruct</artifactId>
+            <version>${org.mapstruct.version}</version>
+        </dependency>
     </dependencies>
 
     <build>
@@ -74,6 +84,27 @@
                 <artifactId>maven-compiler-plugin</artifactId>
                 <configuration>
                     <compilerArgument>-parameters</compilerArgument>
+                    <source>${jdk.version}</source>
+                    <target>${jdk.version}</target>
+                    <annotationProcessorPaths>
+                        <!-- Lombok 注解处理器 -->
+                        <path>
+                            <groupId>org.projectlombok</groupId>
+                            <artifactId>lombok</artifactId>
+                        </path>
+                        <!-- MapStruct 注解处理器 -->
+                        <path>
+                            <groupId>org.mapstruct</groupId>
+                            <artifactId>mapstruct-processor</artifactId>
+                            <version>${org.mapstruct.version}</version>
+                        </path>
+                        <!-- Lombok 与 MapStruct 的绑定器 -->
+                        <path>
+                            <groupId>org.projectlombok</groupId>
+                            <artifactId>lombok-mapstruct-binding</artifactId>
+                            <version>${lombok-mapstruct-binding.version}</version>
+                        </path>
+                    </annotationProcessorPaths>
                 </configuration>
             </plugin>
             <!-- 单元测试相关插件 -->

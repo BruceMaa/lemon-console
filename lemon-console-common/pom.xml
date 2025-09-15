@@ -34,6 +34,36 @@
             <artifactId>continew-starter-extension-datapermission-mp</artifactId>
         </dependency>
 
+        <!-- ContiNew Starter 验证模块 -->
+        <dependency>
+            <groupId>top.continew.starter</groupId>
+            <artifactId>continew-starter-validation</artifactId>
+        </dependency>
+
+        <!-- ContiNew Starter JSON 模块 - Jackson -->
+        <dependency>
+            <groupId>top.continew.starter</groupId>
+            <artifactId>continew-starter-json-jackson</artifactId>
+        </dependency>
+
+        <!-- ContiNew Starter 认证模块 - JustAuth -->
+        <dependency>
+            <groupId>top.continew.starter</groupId>
+            <artifactId>continew-starter-auth-justauth</artifactId>
+        </dependency>
+
+        <!-- ContiNew Starter 安全模块 - 加密 -->
+        <dependency>
+            <groupId>top.continew.starter</groupId>
+            <artifactId>continew-starter-security-crypto</artifactId>
+        </dependency>
+
+        <!-- ContiNew Starter 安全模块 - 脱敏 -->
+        <dependency>
+            <groupId>top.continew.starter</groupId>
+            <artifactId>continew-starter-security-mask</artifactId>
+        </dependency>
+
         <!-- PostgreSQL Java 驱动 -->
         <dependency>
             <groupId>org.postgresql</groupId>
