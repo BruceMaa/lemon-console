@@ -21,6 +21,6 @@ import java.lang.reflect.Method;
 public class BaseController<S extends BaseService<L, D, Q, C>, L, D, Q, C> extends AbstractCrudController<S, L, D, Q, C> {
     @Override
     public void preHandle(CrudApi crudApi, Object[] args, Method targetMethod, Class<?> targetClass) throws Exception {
-
+        // TODO
     }
 }

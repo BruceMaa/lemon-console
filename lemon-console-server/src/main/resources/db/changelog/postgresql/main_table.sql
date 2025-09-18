@@ -162,3 +162,50 @@ COMMENT ON COLUMN "sys_dict_item"."modified_by" IS '修改人';
 COMMENT ON COLUMN "sys_dict_item"."modified_at" IS '修改时间';
 COMMENT ON TABLE  "sys_dict_item"               IS '字典项表';
 
+
+CREATE TABLE IF NOT EXISTS "sys_menu" (
+    "id"          int8         NOT NULL,
+    "title"       varchar(30)  NOT NULL,
+    "parent_id"   int8         NOT NULL DEFAULT 0,
+    "type"        int2         NOT NULL DEFAULT 1,
+    "path"        varchar(255) DEFAULT NULL,
+    "name"        varchar(50)  DEFAULT NULL,
+    "component"   varchar(255) DEFAULT NULL,
+    "redirect"    varchar(255) DEFAULT NULL,
+    "icon"        varchar(50)  DEFAULT NULL,
+    "is_external" bool         DEFAULT false,
+    "is_cache"    bool         DEFAULT false,
+    "is_hidden"   bool         DEFAULT false,
+    "permission"  varchar(100) DEFAULT NULL,
+    "sort"        int4         NOT NULL DEFAULT 999,
+    "status"      int2         NOT NULL DEFAULT 1,
+    "created_by" int8         NOT NULL,
+    "created_at" timestamp    NOT NULL,
+    "modified_by" int8         DEFAULT NULL,
+    "modified_at" timestamp    DEFAULT NULL,
+    PRIMARY KEY ("id")
+);
+CREATE INDEX "idx_menu_parent_id"   ON "sys_menu" ("parent_id");
+CREATE INDEX "idx_menu_created_by" ON "sys_menu" ("created_by");
+CREATE INDEX "idx_menu_modified_by" ON "sys_menu" ("modified_by");
+CREATE UNIQUE INDEX "uk_menu_title_parent_id" ON "sys_menu" ("title", "parent_id");
+COMMENT ON COLUMN "sys_menu"."id"          IS 'ID';
+COMMENT ON COLUMN "sys_menu"."title"       IS '标题';
+COMMENT ON COLUMN "sys_menu"."parent_id"   IS '上级菜单ID';
+COMMENT ON COLUMN "sys_menu"."type"        IS '类型（1：目录；2：菜单；3：按钮）';
+COMMENT ON COLUMN "sys_menu"."path"        IS '路由地址';
+COMMENT ON COLUMN "sys_menu"."name"        IS '组件名称';
+COMMENT ON COLUMN "sys_menu"."component"   IS '组件路径';
+COMMENT ON COLUMN "sys_menu"."redirect"    IS '重定向地址';
+COMMENT ON COLUMN "sys_menu"."icon"        IS '图标';
+COMMENT ON COLUMN "sys_menu"."is_external" IS '是否外链';
+COMMENT ON COLUMN "sys_menu"."is_cache"    IS '是否缓存';
+COMMENT ON COLUMN "sys_menu"."is_hidden"   IS '是否隐藏';
+COMMENT ON COLUMN "sys_menu"."permission"  IS '权限标识';
+COMMENT ON COLUMN "sys_menu"."sort"        IS '排序';
+COMMENT ON COLUMN "sys_menu"."status"      IS '状态（1：启用；2：禁用）';
+COMMENT ON COLUMN "sys_menu"."created_by" IS '创建人';
+COMMENT ON COLUMN "sys_menu"."created_at" IS '创建时间';
+COMMENT ON COLUMN "sys_menu"."modified_by" IS '修改人';
+COMMENT ON COLUMN "sys_menu"."modified_at" IS '修改时间';
+COMMENT ON TABLE  "sys_menu"               IS '菜单表';
