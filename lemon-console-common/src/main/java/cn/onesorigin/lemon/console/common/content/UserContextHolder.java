@@ -11,6 +11,8 @@ import lombok.NoArgsConstructor;
 import top.continew.starter.core.util.ExceptionUtils;
 
 /**
+ * 用户上下文 Holder
+ *
  * @author BruceMaa
  * @since 2025-09-02 10:00
  */

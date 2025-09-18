@@ -27,6 +27,12 @@ import java.awt.*;
 import java.time.Duration;
 import java.time.LocalDateTime;
 
+/**
+ * 验证码 控制器
+ *
+ * @author BruceMaa
+ * @since 2025-09-18 11:17
+ */
 @Slf4j
 @RequiredArgsConstructor
 @Tag(name = "验证码 API")

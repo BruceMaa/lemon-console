@@ -14,7 +14,7 @@ import top.continew.starter.extension.crud.annotation.CrudRequestMapping;
 import top.continew.starter.extension.crud.enums.Api;
 
 /**
- * 用户管理 API
+ * 用户管理 控制器
  *
  * @author BruceMaa
  * @since 2025-09-17 18:30

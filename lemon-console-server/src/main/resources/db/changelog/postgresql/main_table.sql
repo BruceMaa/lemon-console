@@ -102,3 +102,63 @@ COMMENT ON COLUMN "sys_user"."created_at"    IS '创建时间';
 COMMENT ON COLUMN "sys_user"."modified_by"    IS '修改人';
 COMMENT ON COLUMN "sys_user"."modified_at"    IS '修改时间';
 COMMENT ON TABLE  "sys_user"                  IS '用户表';
+
+
+CREATE TABLE IF NOT EXISTS "sys_dict" (
+    "id"          int8         NOT NULL,
+    "name"        varchar(30)  NOT NULL,
+    "code"        varchar(30)  NOT NULL,
+    "description" varchar(200) DEFAULT NULL,
+    "is_system"   bool         NOT NULL DEFAULT false,
+    "created_by" int8         NOT NULL,
+    "created_at" timestamp    NOT NULL,
+    "modified_by" int8         DEFAULT NULL,
+    "modified_at" timestamp    DEFAULT NULL,
+    PRIMARY KEY ("id")
+);
+CREATE UNIQUE INDEX "uk_dict_name" ON "sys_dict" ("name");
+CREATE UNIQUE INDEX "uk_dict_code" ON "sys_dict" ("code");
+COMMENT ON COLUMN "sys_dict"."id"          IS 'ID';
+COMMENT ON COLUMN "sys_dict"."name"        IS '名称';
+COMMENT ON COLUMN "sys_dict"."code"        IS '编码';
+COMMENT ON COLUMN "sys_dict"."description" IS '描述';
+COMMENT ON COLUMN "sys_dict"."is_system"   IS '是否为系统内置数据';
+COMMENT ON COLUMN "sys_dict"."created_by" IS '创建人';
+COMMENT ON COLUMN "sys_dict"."created_at" IS '创建时间';
+COMMENT ON COLUMN "sys_dict"."modified_by" IS '修改人';
+COMMENT ON COLUMN "sys_dict"."modified_at" IS '修改时间';
+COMMENT ON TABLE  "sys_dict"               IS '字典表';
+
+CREATE TABLE IF NOT EXISTS "sys_dict_item" (
+    "id"          int8         NOT NULL,
+    "label"       varchar(30)  NOT NULL,
+    "value"       varchar(30)  NOT NULL,
+    "color"       varchar(30)  DEFAULT NULL,
+    "sort"        int4         NOT NULL DEFAULT 999,
+    "description" varchar(200) DEFAULT NULL,
+    "status"      int2         NOT NULL DEFAULT 1,
+    "dict_id"     int8         NOT NULL,
+    "created_by" int8         NOT NULL,
+    "created_at" timestamp    NOT NULL,
+    "modified_by" int8         DEFAULT NULL,
+    "modified_at" timestamp    DEFAULT NULL,
+    PRIMARY KEY ("id")
+);
+CREATE UNIQUE INDEX "uk_dict_item_value_dict_id" ON "sys_dict_item" ("value", "dict_id");
+CREATE INDEX "idx_dict_item_dict_id"     ON "sys_dict_item" ("dict_id");
+CREATE INDEX "idx_dict_item_created_by" ON "sys_dict_item" ("created_by");
+CREATE INDEX "idx_dict_item_modified_by" ON "sys_dict_item" ("modified_by");
+COMMENT ON COLUMN "sys_dict_item"."id"          IS 'ID';
+COMMENT ON COLUMN "sys_dict_item"."label"       IS '标签';
+COMMENT ON COLUMN "sys_dict_item"."value"       IS '值';
+COMMENT ON COLUMN "sys_dict_item"."color"       IS '标签颜色';
+COMMENT ON COLUMN "sys_dict_item"."sort"        IS '排序';
+COMMENT ON COLUMN "sys_dict_item"."description" IS '描述';
+COMMENT ON COLUMN "sys_dict_item"."status"      IS '状态（1：启用；2：禁用）';
+COMMENT ON COLUMN "sys_dict_item"."dict_id"     IS '字典ID';
+COMMENT ON COLUMN "sys_dict_item"."created_by" IS '创建人';
+COMMENT ON COLUMN "sys_dict_item"."created_at" IS '创建时间';
+COMMENT ON COLUMN "sys_dict_item"."modified_by" IS '修改人';
+COMMENT ON COLUMN "sys_dict_item"."modified_at" IS '修改时间';
+COMMENT ON TABLE  "sys_dict_item"               IS '字典项表';
+

@@ -13,6 +13,11 @@ public interface RegexConstants {
     String USERNAME = "^[a-zA-Z][a-zA-Z0-9_]{3,64}$";
 
     /**
+     * 通用编码正则（长度为 2-30 个字符，支持大小写字母、数字、下划线，以字母开头）
+     */
+    String GENERAL_CODE = "^[a-zA-Z][a-zA-Z0-9_]{1,29}$";
+
+    /**
      * 通用名称正则（长度为 2-30 个字符，支持中文、字母、数字、下划线，短横线）
      */
     String GENERAL_NAME = "^[\\u4e00-\\u9fa5a-zA-Z0-9_-]{2,30}$";

@@ -44,3 +44,20 @@ INSERT INTO "sys_user"
 VALUES
 (1, 'admin', '超级管理员', '{bcrypt}$2a$10$4jGwK2BMJ7FgVR.mgwGodey8.xR8FLoU1XSXpxJ9nZQt.pufhasSa', 1, '42190c6c5639d2ca4edb4150a35e058559ccf8270361a23745a2fd285a273c28', '5bda89a4609a65546422ea56bfe5eab4', NULL, '系统初始用户', 1, true, NOW(), 1, 1, NOW()),
 (547889293968801822, 'test', '测试员', '{bcrypt}$2a$10$xAsoeMJ.jc/kSxhviLAg7.j2iFrhi6yYAdniNdjLiIUWU/BRZl2Ti', 2, NULL, NULL, NULL, NULL, 1, false, NOW(), 547887852587843593, 1, NOW());
+
+
+-- 初始化默认字典
+INSERT INTO "sys_dict"
+("id", "name", "code", "description", "is_system", "created_by", "created_at")
+VALUES
+(1, '公告分类', 'notice_type', NULL, true, 1, NOW()),
+(2, '客户端类型', 'client_type', NULL, true, 1, NOW());
+
+INSERT INTO "sys_dict_item"
+("id", "label", "value", "color", "sort", "description", "status", "dict_id", "created_by", "created_at")
+VALUES
+(1, '产品新闻', '1', 'primary', 1, NULL, 1, 1, 1, NOW()),
+(2, '企业动态', '2', 'success', 2, NULL, 1, 1, 1, NOW()),
+(3, '桌面端', 'PC', 'primary', 1, NULL, 1, 2, 1, NOW()),
+(4, '安卓', 'ANDROID', 'success', 2, NULL, 1, 2, 1, NOW()),
+(5, '小程序', 'MINIAPP', 'warning', 3, NULL, 1, 2, 1, NOW());

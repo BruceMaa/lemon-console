@@ -14,7 +14,7 @@ import top.continew.starter.core.util.ServletUtils;
 import java.time.LocalDateTime;
 
 /**
- * 用户额外上下文
+ * 用户额外信息上下文
  *
  * @author BruceMaa
  * @since 2025-09-02 10:58

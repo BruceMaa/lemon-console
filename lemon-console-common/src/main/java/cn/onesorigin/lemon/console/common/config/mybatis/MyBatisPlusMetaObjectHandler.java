@@ -19,19 +19,19 @@ public class MyBatisPlusMetaObjectHandler implements MetaObjectHandler {
     /**
      * 创建人
      */
-    private static final String CREATE_USER = "createdBy";
+    private static final String CREATED_BY = "createdBy";
     /**
      * 创建时间
      */
-    private static final String CREATE_TIME = "createdAt";
+    private static final String CREATED_AT = "createdAt";
     /**
      * 修改人
      */
-    private static final String UPDATE_USER = "modifiedBy";
+    private static final String MODIFIED_BY = "modifiedBy";
     /**
      * 修改时间
      */
-    private static final String UPDATE_TIME = "modifiedAt";
+    private static final String MODIFIED_AT = "modifiedAt";
 
     /**
      * 插入数据时填充
@@ -43,16 +43,17 @@ public class MyBatisPlusMetaObjectHandler implements MetaObjectHandler {
         if (metaObject == null) {
             return;
         }
-        Long createUser = UserContextHolder.getUserId();
-        LocalDateTime createTime = LocalDateTime.now();
+        Long createdBy = UserContextHolder.getUserId();
+        createdBy = 1L; // FIXME
+        LocalDateTime createdAt = LocalDateTime.now();
         if (metaObject.getOriginalObject() instanceof BaseDO baseDO) {
             // 继承了 BaseDO 的类，填充创建信息字段
-            baseDO.setCreatedBy(ObjectUtil.defaultIfNull(baseDO.getCreatedBy(), createUser));
-            baseDO.setCreatedAt(ObjectUtil.defaultIfNull(baseDO.getCreatedAt(), createTime));
+            baseDO.setCreatedBy(ObjectUtil.defaultIfNull(baseDO.getCreatedBy(), createdBy));
+            baseDO.setCreatedAt(ObjectUtil.defaultIfNull(baseDO.getCreatedAt(), createdAt));
         } else {
             // 未继承 BaseDO 的类，如存在创建信息字段则进行填充
-            this.fillFieldValue(metaObject, CREATE_USER, createUser, false);
-            this.fillFieldValue(metaObject, CREATE_TIME, createTime, false);
+            this.fillFieldValue(metaObject, CREATED_BY, createdBy, false);
+            this.fillFieldValue(metaObject, CREATED_AT, createdAt, false);
         }
     }
 
@@ -66,16 +67,17 @@ public class MyBatisPlusMetaObjectHandler implements MetaObjectHandler {
         if (metaObject == null) {
             return;
         }
-        Long updateUser = UserContextHolder.getUserId();
-        LocalDateTime updateTime = LocalDateTime.now();
+        Long modifiedBy = UserContextHolder.getUserId();
+        modifiedBy = 1L;  // FIXME
+        LocalDateTime modifiedAt = LocalDateTime.now();
         if (metaObject.getOriginalObject() instanceof BaseDO baseDO) {
             // 继承了 BaseDO 的类，填充修改信息
-            baseDO.setModifiedBy(updateUser);
-            baseDO.setModifiedAt(updateTime);
+            baseDO.setModifiedBy(modifiedBy);
+            baseDO.setModifiedAt(modifiedAt);
         } else {
             // 未继承 BaseDO 的类，根据类中拥有的修改信息字段进行填充，不存在修改信息字段不进行填充
-            this.fillFieldValue(metaObject, UPDATE_USER, updateUser, true);
-            this.fillFieldValue(metaObject, UPDATE_TIME, updateTime, true);
+            this.fillFieldValue(metaObject, MODIFIED_BY, modifiedBy, true);
+            this.fillFieldValue(metaObject, MODIFIED_AT, modifiedAt, true);
         }
     }
 
