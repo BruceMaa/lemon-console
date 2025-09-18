@@ -1,4 +1,4 @@
-package cn.onesorigin.lemon.console.auth.model.entity;
+package cn.onesorigin.lemon.console.system.model.entity;
 
 import cn.onesorigin.lemon.console.common.base.model.entity.BaseDO;
 import cn.onesorigin.lemon.console.common.enums.DisEnableStatusEnum;

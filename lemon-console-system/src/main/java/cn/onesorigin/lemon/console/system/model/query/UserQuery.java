@@ -1,4 +1,4 @@
-package cn.onesorigin.lemon.console.auth.model.query;
+package cn.onesorigin.lemon.console.system.model.query;
 
 import cn.onesorigin.lemon.console.common.enums.DisEnableStatusEnum;
 import io.swagger.v3.oas.annotations.media.Schema;

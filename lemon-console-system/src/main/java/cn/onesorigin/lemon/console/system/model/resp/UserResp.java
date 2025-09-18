@@ -1,4 +1,4 @@
-package cn.onesorigin.lemon.console.auth.model.resp.user;
+package cn.onesorigin.lemon.console.system.model.resp;
 
 import cn.onesorigin.lemon.console.common.base.model.resp.BaseDetailResp;
 import cn.onesorigin.lemon.console.common.content.UserContextHolder;

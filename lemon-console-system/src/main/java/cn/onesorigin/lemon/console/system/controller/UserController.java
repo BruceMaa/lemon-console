@@ -1,10 +1,10 @@
-package cn.onesorigin.lemon.console.auth.controller;
+package cn.onesorigin.lemon.console.system.controller;
 
-import cn.onesorigin.lemon.console.auth.model.query.UserQuery;
-import cn.onesorigin.lemon.console.auth.model.req.UserReq;
-import cn.onesorigin.lemon.console.auth.model.resp.user.UserDetailResp;
-import cn.onesorigin.lemon.console.auth.model.resp.user.UserResp;
-import cn.onesorigin.lemon.console.auth.service.UserService;
+import cn.onesorigin.lemon.console.system.model.query.UserQuery;
+import cn.onesorigin.lemon.console.system.model.req.UserReq;
+import cn.onesorigin.lemon.console.system.model.resp.UserDetailResp;
+import cn.onesorigin.lemon.console.system.model.resp.UserResp;
+import cn.onesorigin.lemon.console.system.service.UserService;
 import cn.onesorigin.lemon.console.common.base.controller.BaseController;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;

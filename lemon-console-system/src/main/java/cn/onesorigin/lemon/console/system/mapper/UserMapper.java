@@ -1,6 +1,6 @@
-package cn.onesorigin.lemon.console.auth.mapper;
+package cn.onesorigin.lemon.console.system.mapper;
 
-import cn.onesorigin.lemon.console.auth.model.entity.UserDO;
+import cn.onesorigin.lemon.console.system.model.entity.UserDO;
 import cn.onesorigin.lemon.console.common.base.mapper.DataPermissionMapper;
 import org.apache.ibatis.annotations.Mapper;
 

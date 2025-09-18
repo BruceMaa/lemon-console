@@ -1,4 +1,4 @@
-package cn.onesorigin.lemon.console.auth.model.resp.user;
+package cn.onesorigin.lemon.console.system.model.resp;
 
 import cn.idev.excel.annotation.ExcelIgnoreUnannotated;
 import cn.idev.excel.annotation.ExcelProperty;

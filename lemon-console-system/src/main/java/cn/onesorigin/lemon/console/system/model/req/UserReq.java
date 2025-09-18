@@ -1,4 +1,4 @@
-package cn.onesorigin.lemon.console.auth.model.req;
+package cn.onesorigin.lemon.console.system.model.req;
 
 import cn.onesorigin.lemon.console.common.constant.RegexConstants;
 import cn.onesorigin.lemon.console.common.enums.DisEnableStatusEnum;
