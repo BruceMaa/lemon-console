@@ -209,3 +209,37 @@ COMMENT ON COLUMN "sys_menu"."created_at" IS '创建时间';
 COMMENT ON COLUMN "sys_menu"."modified_by" IS '修改人';
 COMMENT ON COLUMN "sys_menu"."modified_at" IS '修改时间';
 COMMENT ON TABLE  "sys_menu"               IS '菜单表';
+
+
+CREATE TABLE IF NOT EXISTS "sys_dept" (
+    "id"          int8         NOT NULL,
+    "name"        varchar(30)  NOT NULL,
+    "parent_id"   int8         NOT NULL DEFAULT 0,
+    "ancestors"   varchar(512) NOT NULL DEFAULT '',
+    "description" varchar(200) DEFAULT NULL,
+    "sort"        int4         NOT NULL DEFAULT 999,
+    "status"      int2         NOT NULL DEFAULT 1,
+    "is_system"   bool         NOT NULL DEFAULT false,
+    "created_by" int8         NOT NULL,
+    "created_at" timestamp    NOT NULL,
+    "modified_by" int8         DEFAULT NULL,
+    "modified_at" timestamp    DEFAULT NULL,
+    PRIMARY KEY ("id")
+);
+CREATE INDEX "idx_dept_parent_id"   ON "sys_dept" ("parent_id");
+CREATE INDEX "idx_dept_created_by" ON "sys_dept" ("created_by");
+CREATE INDEX "idx_dept_modified_by" ON "sys_dept" ("modified_by");
+CREATE UNIQUE INDEX "uk_dept_name_parent_id" ON "sys_dept" ("name", "parent_id");
+COMMENT ON COLUMN "sys_dept"."id"          IS 'ID';
+COMMENT ON COLUMN "sys_dept"."name"        IS '名称';
+COMMENT ON COLUMN "sys_dept"."parent_id"   IS '上级部门ID';
+COMMENT ON COLUMN "sys_dept"."ancestors"   IS '祖级列表';
+COMMENT ON COLUMN "sys_dept"."description" IS '描述';
+COMMENT ON COLUMN "sys_dept"."sort"        IS '排序';
+COMMENT ON COLUMN "sys_dept"."status"      IS '状态（1：启用；2：禁用）';
+COMMENT ON COLUMN "sys_dept"."is_system"   IS '是否为系统内置数据';
+COMMENT ON COLUMN "sys_dept"."created_by" IS '创建人';
+COMMENT ON COLUMN "sys_dept"."created_at" IS '创建时间';
+COMMENT ON COLUMN "sys_dept"."modified_by" IS '修改人';
+COMMENT ON COLUMN "sys_dept"."modified_at" IS '修改时间';
+COMMENT ON TABLE  "sys_dept"               IS '部门表';
