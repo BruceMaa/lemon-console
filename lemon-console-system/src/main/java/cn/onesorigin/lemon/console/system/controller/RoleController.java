@@ -23,7 +23,7 @@ import top.continew.starter.extension.crud.enums.Api;
 @Slf4j
 @RequiredArgsConstructor
 @RestController
-@CrudRequestMapping(value = "/system/role", api = {
+@CrudRequestMapping(value = "/system/roles", api = {
         Api.LIST,
         Api.GET,
         Api.CREATE,

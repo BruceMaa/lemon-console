@@ -23,7 +23,7 @@ import top.continew.starter.extension.crud.enums.Api;
 @RequiredArgsConstructor
 @Validated
 @RestController
-@CrudRequestMapping(value = "/system/user", api = {
+@CrudRequestMapping(value = "/system/users", api = {
         Api.PAGE,
         Api.LIST,
         Api.GET,

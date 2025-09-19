@@ -22,7 +22,7 @@ import top.continew.starter.extension.crud.enums.Api;
 @Slf4j
 @RequiredArgsConstructor
 @RestController
-@CrudRequestMapping(value = "/system/dict/item", api = {
+@CrudRequestMapping(value = "/system/dict-items", api = {
         Api.PAGE,
         Api.GET,
         Api.CREATE,
