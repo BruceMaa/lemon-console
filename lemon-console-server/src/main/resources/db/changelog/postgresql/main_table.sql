@@ -243,3 +243,39 @@ COMMENT ON COLUMN "sys_dept"."created_at" IS '创建时间';
 COMMENT ON COLUMN "sys_dept"."modified_by" IS '修改人';
 COMMENT ON COLUMN "sys_dept"."modified_at" IS '修改时间';
 COMMENT ON TABLE  "sys_dept"               IS '部门表';
+
+
+CREATE TABLE IF NOT EXISTS "sys_role" (
+    "id"                  int8         NOT NULL,
+    "name"                varchar(30)  NOT NULL,
+    "code"                varchar(30)  NOT NULL,
+    "data_scope"          int2         NOT NULL DEFAULT 4,
+    "description"         varchar(200) DEFAULT NULL,
+    "sort"                int4         NOT NULL DEFAULT 999,
+    "is_system"           bool         NOT NULL DEFAULT false,
+    "menu_check_strictly" bool DEFAULT true,
+    "dept_check_strictly" bool DEFAULT true,
+    "created_by"         int8         NOT NULL,
+    "created_at"         timestamp    NOT NULL,
+    "modified_by"         int8         DEFAULT NULL,
+    "modified_at"         timestamp    DEFAULT NULL,
+    PRIMARY KEY ("id")
+);
+CREATE UNIQUE INDEX "uk_role_name"  ON "sys_role" ("name");
+CREATE UNIQUE INDEX "uk_role_code"  ON "sys_role" ("code");
+CREATE INDEX "idx_role_created_by" ON "sys_role" ("created_by");
+CREATE INDEX "idx_role_modified_by" ON "sys_role" ("modified_by");
+COMMENT ON COLUMN "sys_role"."id"          IS 'ID';
+COMMENT ON COLUMN "sys_role"."name"        IS '名称';
+COMMENT ON COLUMN "sys_role"."code"        IS '编码';
+COMMENT ON COLUMN "sys_role"."data_scope"  IS '数据权限（1：全部数据权限；2：本部门及以下数据权限；3：本部门数据权限；4：仅本人数据权限；5：自定义数据权限）';
+COMMENT ON COLUMN "sys_role"."description" IS '描述';
+COMMENT ON COLUMN "sys_role"."sort"        IS '排序';
+COMMENT ON COLUMN "sys_role"."is_system"   IS '是否为系统内置数据';
+COMMENT ON COLUMN "sys_role"."menu_check_strictly" IS '菜单选择是否父子节点关联';
+COMMENT ON COLUMN "sys_role"."dept_check_strictly" IS '部门选择是否父子节点关联';
+COMMENT ON COLUMN "sys_role"."created_by" IS '创建人';
+COMMENT ON COLUMN "sys_role"."created_at" IS '创建时间';
+COMMENT ON COLUMN "sys_role"."modified_by" IS '修改人';
+COMMENT ON COLUMN "sys_role"."modified_at" IS '修改时间';
+COMMENT ON TABLE  "sys_role"               IS '角色表';

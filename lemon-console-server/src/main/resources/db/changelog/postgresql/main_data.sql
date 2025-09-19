@@ -220,3 +220,14 @@ VALUES
 (547887852587843609, 'Xxx（湖南）科技有限公司', 1, '0,1', NULL, 6, 1, false, 1, NOW()),
 (547887852587843610, '研发部', 547887852587843609, '0,1,547887852587843609', NULL, 1, 1, false, 1, NOW()),
 (547887852587843611, '研发一组', 547887852587843610, '0,1,547887852587843609,547887852587843610', NULL, 1, 1, false, 1, NOW());
+
+
+-- 初始化默认角色
+INSERT INTO "sys_role"
+("id", "name", "code", "data_scope", "description", "sort", "is_system", "created_by", "created_at")
+VALUES
+(1, '超级管理员', 'super_admin', 1, '系统初始角色', 0, true, 1, NOW()),
+(2, '系统管理员', 'sys_admin', 1, NULL, 1, false, 1, NOW()),
+(3, '普通用户', 'general', 4, NULL, 2, false, 1, NOW()),
+(547888897925840927, '测试人员', 'tester', 5, NULL, 3, false, 1, NOW()),
+(547888897925840928, '研发人员', 'developer', 4, NULL, 4, false, 1, NOW());
