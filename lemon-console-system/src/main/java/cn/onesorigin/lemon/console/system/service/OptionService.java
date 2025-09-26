@@ -1,9 +1,14 @@
 package cn.onesorigin.lemon.console.system.service;
 
 
+import cn.onesorigin.lemon.console.system.enums.OptionCategoryEnum;
 import cn.onesorigin.lemon.console.system.model.entity.OptionDO;
+import cn.onesorigin.lemon.console.system.model.query.OptionQuery;
+import cn.onesorigin.lemon.console.system.model.resp.OptionResp;
 import com.baomidou.mybatisplus.extension.service.IService;
 
+import java.util.List;
+import java.util.Map;
 import java.util.function.Function;
 
 /**
@@ -13,6 +18,8 @@ import java.util.function.Function;
  * @since 2025-09-02 14:30
  */
 public interface OptionService extends IService<OptionDO> {
+
+    List<OptionResp> list(OptionQuery query);
 
     /**
      * 根据编码查询参数值
@@ -30,4 +37,12 @@ public interface OptionService extends IService<OptionDO> {
      * @return 参数值
      */
     <T> T getValueByCode(String code, Function<String, T> mapper);
+
+    /**
+     * 根据类别查询参数值
+     *
+     * @param optionCategory 类别
+     * @return 参数信息
+     */
+    Map<String, String> getByCategory(OptionCategoryEnum optionCategory);
 }

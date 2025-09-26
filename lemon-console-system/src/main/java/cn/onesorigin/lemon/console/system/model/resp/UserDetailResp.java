@@ -1,11 +1,20 @@
 package cn.onesorigin.lemon.console.system.model.resp;
 
+import cn.crane4j.annotation.Assemble;
+import cn.crane4j.annotation.AssembleMethod;
+import cn.crane4j.annotation.ContainerMethod;
+import cn.crane4j.annotation.Mapping;
+import cn.crane4j.annotation.condition.ConditionOnExpression;
+import cn.crane4j.core.executor.handler.ManyToManyAssembleOperationHandler;
+import cn.crane4j.core.executor.handler.OneToManyAssembleOperationHandler;
 import cn.idev.excel.annotation.ExcelIgnoreUnannotated;
 import cn.idev.excel.annotation.ExcelProperty;
 import cn.onesorigin.lemon.console.common.base.model.resp.BaseDetailResp;
-import cn.onesorigin.lemon.console.common.content.UserContextHolder;
+import cn.onesorigin.lemon.console.common.constant.ContainerConstants;
+import cn.onesorigin.lemon.console.common.context.UserContextHolder;
 import cn.onesorigin.lemon.console.common.enums.DisEnableStatusEnum;
 import cn.onesorigin.lemon.console.common.enums.GenderEnum;
+import cn.onesorigin.lemon.console.system.service.DeptService;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.AccessLevel;
 import lombok.Data;
@@ -28,6 +37,7 @@ import java.util.Objects;
 @Data
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Schema(description = "用户详情响应参数")
+@Assemble(key = "id", props = @Mapping(src = "roleId", ref = "roleIds"), sort = 0, container = ContainerConstants.USER_ROLE_ID_LIST, handlerType = OneToManyAssembleOperationHandler.class)
 public class UserDetailResp extends BaseDetailResp {
 
     /**
@@ -63,6 +73,8 @@ public class UserDetailResp extends BaseDetailResp {
      */
     @Schema(description = "部门 ID", example = "5")
     @ExcelProperty(value = "部门 ID", order = 6)
+    @ConditionOnExpression("#target.deptName == null")
+    @AssembleMethod(props = @Mapping(src = "name", ref = "deptName"), targetType = DeptService.class, method = @ContainerMethod(bindMethod = "get", resultType = DeptResp.class))
     Long deptId;
 
     /**
@@ -77,6 +89,7 @@ public class UserDetailResp extends BaseDetailResp {
      */
     @Schema(description = "角色 ID 列表", example = "2")
     @ExcelProperty(value = "角色 ID 列表", converter = ExcelListConverter.class, order = 8)
+    @Assemble(props = @Mapping(src = "name", ref = "roleNames"), container = ContainerConstants.USER_ROLE_NAME_LIST, handlerType = ManyToManyAssembleOperationHandler.class)
     List<Long> roleIds;
 
     /**

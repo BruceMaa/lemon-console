@@ -21,7 +21,17 @@ public interface CacheConstants {
     String CAPTCHA_KEY_PREFIX = "CAPTCHA" + DELIMITER;
 
     /**
+     * 用户缓存键前缀
+     */
+    String USER_KEY_PREFIX = "USER" + DELIMITER;
+
+    /**
      * 参数缓存键前缀
      */
     String OPTION_KEY_PREFIX = "OPTION" + DELIMITER;
+
+    /**
+     * 用户密码错误次数缓存键前缀
+     */
+    String USER_PASSWORD_ERROR_KEY_PREFIX = USER_KEY_PREFIX + "PASSWORD_ERROR" + DELIMITER;
 }

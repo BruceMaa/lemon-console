@@ -93,7 +93,7 @@ COMMENT ON COLUMN "sys_user"."email"          IS '邮箱';
 COMMENT ON COLUMN "sys_user"."phone"          IS '手机号码';
 COMMENT ON COLUMN "sys_user"."avatar"         IS '头像';
 COMMENT ON COLUMN "sys_user"."description"    IS '描述';
-COMMENT ON COLUMN "sys_user"."status"         IS '状态（1：启用；2：禁用）';
+COMMENT ON COLUMN "sys_user"."status"         IS '状态（1：启用；0：禁用）';
 COMMENT ON COLUMN "sys_user"."is_system"      IS '是否为系统内置数据';
 COMMENT ON COLUMN "sys_user"."pwd_reset_time" IS '最后一次修改密码时间';
 COMMENT ON COLUMN "sys_user"."dept_id"        IS '部门ID';
@@ -154,7 +154,7 @@ COMMENT ON COLUMN "sys_dict_item"."value"       IS '值';
 COMMENT ON COLUMN "sys_dict_item"."color"       IS '标签颜色';
 COMMENT ON COLUMN "sys_dict_item"."sort"        IS '排序';
 COMMENT ON COLUMN "sys_dict_item"."description" IS '描述';
-COMMENT ON COLUMN "sys_dict_item"."status"      IS '状态（1：启用；2：禁用）';
+COMMENT ON COLUMN "sys_dict_item"."status"      IS '状态（1：启用；0：禁用）';
 COMMENT ON COLUMN "sys_dict_item"."dict_id"     IS '字典ID';
 COMMENT ON COLUMN "sys_dict_item"."created_by" IS '创建人';
 COMMENT ON COLUMN "sys_dict_item"."created_at" IS '创建时间';
@@ -203,7 +203,7 @@ COMMENT ON COLUMN "sys_menu"."is_cache"    IS '是否缓存';
 COMMENT ON COLUMN "sys_menu"."is_hidden"   IS '是否隐藏';
 COMMENT ON COLUMN "sys_menu"."permission"  IS '权限标识';
 COMMENT ON COLUMN "sys_menu"."sort"        IS '排序';
-COMMENT ON COLUMN "sys_menu"."status"      IS '状态（1：启用；2：禁用）';
+COMMENT ON COLUMN "sys_menu"."status"      IS '状态（1：启用；0：禁用）';
 COMMENT ON COLUMN "sys_menu"."created_by" IS '创建人';
 COMMENT ON COLUMN "sys_menu"."created_at" IS '创建时间';
 COMMENT ON COLUMN "sys_menu"."modified_by" IS '修改人';
@@ -236,7 +236,7 @@ COMMENT ON COLUMN "sys_dept"."parent_id"   IS '上级部门ID';
 COMMENT ON COLUMN "sys_dept"."ancestors"   IS '祖级列表';
 COMMENT ON COLUMN "sys_dept"."description" IS '描述';
 COMMENT ON COLUMN "sys_dept"."sort"        IS '排序';
-COMMENT ON COLUMN "sys_dept"."status"      IS '状态（1：启用；2：禁用）';
+COMMENT ON COLUMN "sys_dept"."status"      IS '状态（1：启用；0：禁用）';
 COMMENT ON COLUMN "sys_dept"."is_system"   IS '是否为系统内置数据';
 COMMENT ON COLUMN "sys_dept"."created_by" IS '创建人';
 COMMENT ON COLUMN "sys_dept"."created_at" IS '创建时间';
@@ -279,3 +279,47 @@ COMMENT ON COLUMN "sys_role"."created_at" IS '创建时间';
 COMMENT ON COLUMN "sys_role"."modified_by" IS '修改人';
 COMMENT ON COLUMN "sys_role"."modified_at" IS '修改时间';
 COMMENT ON TABLE  "sys_role"               IS '角色表';
+
+CREATE TABLE IF NOT EXISTS "sys_user_password_history" (
+    "id"          int8         NOT NULL,
+    "user_id"     int8         NOT NULL,
+    "password"    varchar(255) NOT NULL,
+    "created_at" timestamp    NOT NULL,
+    PRIMARY KEY ("id")
+);
+CREATE INDEX "idx_uph_user_id" ON "sys_user_password_history" ("user_id");
+COMMENT ON COLUMN "sys_user_password_history"."id"          IS 'ID';
+COMMENT ON COLUMN "sys_user_password_history"."user_id"     IS '用户ID';
+COMMENT ON COLUMN "sys_user_password_history"."password"    IS '密码';
+COMMENT ON COLUMN "sys_user_password_history"."created_at" IS '创建时间';
+COMMENT ON TABLE  "sys_user_password_history"               IS '用户历史密码表';
+
+CREATE TABLE IF NOT EXISTS "sys_user_role" (
+    "id"      int8 NOT NULL,
+    "user_id" int8 NOT NULL,
+    "role_id" int8 NOT NULL,
+    PRIMARY KEY ("id")
+);
+CREATE UNIQUE INDEX "uk_user_id_role_id" ON "sys_user_role" ("user_id", "role_id");
+COMMENT ON COLUMN "sys_user_role"."id"      IS 'ID';
+COMMENT ON COLUMN "sys_user_role"."user_id" IS '用户ID';
+COMMENT ON COLUMN "sys_user_role"."role_id" IS '角色ID';
+COMMENT ON TABLE  "sys_user_role"           IS '用户和角色关联表';
+
+CREATE TABLE IF NOT EXISTS "sys_role_menu" (
+    "role_id" int8 NOT NULL,
+    "menu_id" int8 NOT NULL,
+    PRIMARY KEY ("role_id", "menu_id")
+);
+COMMENT ON COLUMN "sys_role_menu"."role_id" IS '角色ID';
+COMMENT ON COLUMN "sys_role_menu"."menu_id" IS '菜单ID';
+COMMENT ON TABLE  "sys_role_menu"           IS '角色和菜单关联表';
+
+CREATE TABLE IF NOT EXISTS "sys_role_dept" (
+    "role_id" int8 NOT NULL,
+    "dept_id" int8 NOT NULL,
+    PRIMARY KEY ("role_id", "dept_id")
+);
+COMMENT ON COLUMN "sys_role_dept"."role_id" IS '角色ID';
+COMMENT ON COLUMN "sys_role_dept"."dept_id" IS '部门ID';
+COMMENT ON TABLE  "sys_role_dept"           IS '角色和部门关联表';

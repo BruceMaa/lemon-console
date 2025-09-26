@@ -40,6 +40,12 @@
             <artifactId>continew-starter-trace</artifactId>
         </dependency>
 
+        <!-- ContiNew Starter 验证码模块 - 图形验证码 -->
+        <dependency>
+            <groupId>top.continew.starter</groupId>
+            <artifactId>continew-starter-captcha-graphic</artifactId>
+        </dependency>
+
         <!-- Liquibase（用于管理数据库版本，跟踪、管理和应用数据库变化） -->
         <dependency>
             <groupId>org.liquibase</groupId>

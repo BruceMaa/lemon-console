@@ -11,6 +11,8 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * 部门 业务实现
  *
@@ -21,4 +23,9 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 @Service
 public class DeptServiceImpl extends BaseServiceImpl<DeptMapper, DeptDO, DeptResp, DeptResp, DeptQuery, DeptReq> implements DeptService {
+    @Override
+    public List<DeptDO> findChildren(Long deptId) {
+        // TODO 之后部门信息中会添加deptCode字段，然后like查询所有子部门信息
+        return baseMapper.lambdaQuery().apply("(select position(',%s,' in ','||ancestors||',')) <> 0".formatted(deptId)).list();
+    }
 }

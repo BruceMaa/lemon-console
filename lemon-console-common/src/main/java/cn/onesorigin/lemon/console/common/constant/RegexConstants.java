@@ -13,6 +13,11 @@ public interface RegexConstants {
     String USERNAME = "^[a-zA-Z][a-zA-Z0-9_]{3,64}$";
 
     /**
+     * 密码正则模板（密码长度为 min-max 个字符，支持大小写字母、数字、特殊字符，至少包含字母和数字）
+     */
+    String PASSWORD_TEMPLATE = "^(?=.*\\d)(?=.*[a-z]).{%s,%s}$";
+
+    /**
      * 通用编码正则（长度为 2-30 个字符，支持大小写字母、数字、下划线，以字母开头）
      */
     String GENERAL_CODE = "^[a-zA-Z][a-zA-Z0-9_]{1,29}$";
@@ -26,4 +31,9 @@ public interface RegexConstants {
      * 密码正则（密码长度为 8-32 个字符，支持大小写字母、数字、特殊字符，至少包含字母和数字）
      */
     String PASSWORD = "^(?=.*\\d)(?=.*[a-z]).{8,32}$";
+
+    /**
+     * 特殊字符正则
+     */
+    String SPECIAL_CHARACTER = "[-_`~!@#$%^&*()+=|{}':;',\\\\[\\\\].<>/?~！@#￥%……&*（）——+|{}【】‘；：”“’。，、？]|\\n|\\r|\\t";
 }

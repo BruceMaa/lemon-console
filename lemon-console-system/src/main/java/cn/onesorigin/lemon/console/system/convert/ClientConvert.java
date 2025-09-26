@@ -18,5 +18,5 @@ public interface ClientConvert {
     @Mapping(target = "modifiedUsername", ignore = true)
     @Mapping(target = "disabled", ignore = true)
     @Mapping(target = "createdUsername", ignore = true)
-    ClientResp doToResp(ClientDO clientDO);
+    ClientResp convert(ClientDO clientDO);
 }

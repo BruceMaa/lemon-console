@@ -1,4 +1,4 @@
-package cn.onesorigin.lemon.console.common.content;
+package cn.onesorigin.lemon.console.common.context;
 
 import cn.dev33.satoken.session.SaSession;
 import cn.dev33.satoken.stp.StpUtil;

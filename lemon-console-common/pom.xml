@@ -40,16 +40,34 @@
             <artifactId>continew-starter-validation</artifactId>
         </dependency>
 
+        <!-- ContiNew Starter 消息模块 - WebSocket -->
+        <dependency>
+            <groupId>top.continew.starter</groupId>
+            <artifactId>continew-starter-messaging-websocket</artifactId>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-starter-web</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
         <!-- ContiNew Starter JSON 模块 - Jackson -->
         <dependency>
             <groupId>top.continew.starter</groupId>
             <artifactId>continew-starter-json-jackson</artifactId>
         </dependency>
 
-        <!-- ContiNew Starter 认证模块 - JustAuth -->
+        <!-- ContiNew Starter 认证模块 - SaToken -->
         <dependency>
             <groupId>top.continew.starter</groupId>
-            <artifactId>continew-starter-auth-justauth</artifactId>
+            <artifactId>continew-starter-auth-satoken</artifactId>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-starter-web</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
 
         <!-- ContiNew Starter 安全模块 - 加密 -->

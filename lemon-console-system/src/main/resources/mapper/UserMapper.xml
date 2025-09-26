@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.onesorigin.lemon.console.system.mapper.UserMapper">
+
+    <sql id="selectUser">
+        SELECT
+            t1.id,
+            t1.created_by,
+            t1.created_at,
+            t1.modified_by,
+            t1.modified_at,
+            t1.username,
+            t1.nickname,
+            t1.password,
+            t1.gender,
+            t1.email,
+            t1.phone,
+            t1.avatar,
+            t1.description,
+            t1.status,
+            t1.is_system,
+            t1.pwd_reset_time,
+            t1.dept_id,
+            t2.name AS deptName
+        FROM sys_user AS t1
+        LEFT JOIN sys_dept AS t2 ON t2.id = t1.dept_id
+    </sql>
+
+    <select id="findUserPage" resultType="cn.onesorigin.lemon.console.system.model.resp.UserDetailResp">
+        <include refid="selectUser" />
+        ${ew.customSqlSegment}
+    </select>
+
+    <select id="findUserList" resultType="cn.onesorigin.lemon.console.system.model.resp.UserDetailResp">
+        <include refid="selectUser" />
+        ${ew.customSqlSegment}
+    </select>
+</mapper>

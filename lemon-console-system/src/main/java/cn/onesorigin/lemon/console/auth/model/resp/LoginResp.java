@@ -2,6 +2,7 @@ package cn.onesorigin.lemon.console.auth.model.resp;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.AccessLevel;
+import lombok.Builder;
 import lombok.Data;
 import lombok.experimental.FieldDefaults;
 
@@ -13,6 +14,7 @@ import lombok.experimental.FieldDefaults;
  */
 @Data
 @FieldDefaults(level = AccessLevel.PRIVATE)
+@Builder
 @Schema(description = "登录响应参数")
 public class LoginResp {
 

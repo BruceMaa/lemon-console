@@ -1,4 +1,4 @@
-package cn.onesorigin.lemon.console.common.content;
+package cn.onesorigin.lemon.console.common.context;
 
 import cn.onesorigin.lemon.console.common.enums.DataScopeEnum;
 import lombok.AccessLevel;

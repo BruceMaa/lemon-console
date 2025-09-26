@@ -1,9 +1,12 @@
 package cn.onesorigin.lemon.console;
 
+import cn.dev33.satoken.annotation.SaIgnore;
 import cn.hutool.core.net.NetUtil;
 import cn.hutool.core.util.URLUtil;
 import cn.hutool.extra.spring.SpringUtil;
-//import com.github.xiaoymin.knife4j.spring.configuration.Knife4jProperties;
+import com.alicp.jetcache.anno.config.EnableMethodCache;
+import com.github.xiaoymin.knife4j.spring.configuration.Knife4jProperties;
+import io.swagger.v3.oas.annotations.Hidden;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.ApplicationArguments;
@@ -29,6 +32,7 @@ import top.continew.starter.web.model.R;
 @RequiredArgsConstructor
 @EnableCrudApi
 @EnableGlobalResponse
+@EnableMethodCache(basePackages = "cn.onesorigin.lemon.console")
 @RestController
 @SpringBootApplication
 public class ConsoleApplication implements ApplicationRunner {
@@ -40,8 +44,10 @@ public class ConsoleApplication implements ApplicationRunner {
         SpringApplication.run(ConsoleApplication.class, args);
     }
 
+    @Hidden
+    @SaIgnore
     @GetMapping("/")
-    public R index() {
+    public R<?> index() {
         return R.ok(applicationProperties);
     }
 
@@ -58,13 +64,11 @@ public class ConsoleApplication implements ApplicationRunner {
         log.info("当前版本: v{} (Profile: {})", applicationProperties.getVersion(), SpringUtil
                 .getProperty("spring.profiles.active"));
         log.info("服务地址: {}", baseUrl);
-        //Knife4jProperties knife4jProperties = SpringUtil.getBean(Knife4jProperties.class);
-        //if (!knife4jProperties.isProduction()) {
-        //    log.info("接口文档: {}/doc.html", baseUrl);
-        //}
-        //log.info("常见问题: https://continew.top/admin/faq.html");
-        //log.info("更新日志: https://continew.top/admin/changelog/");
-        //log.info("ContiNew Admin: 持续迭代优化的，高质量多租户中后台管理系统框架");
+        Knife4jProperties knife4jProperties = SpringUtil.getBean(Knife4jProperties.class);
+        if (!knife4jProperties.isProduction()) {
+            log.info("接口文档: {}/doc.html", baseUrl);
+        }
+        log.info("Lemon Console: 柠檬控制台");
         log.info("--------------------------------------------------------");
     }
 

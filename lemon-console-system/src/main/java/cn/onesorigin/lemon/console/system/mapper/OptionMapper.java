@@ -1,8 +1,8 @@
 package cn.onesorigin.lemon.console.system.mapper;
 
 import cn.onesorigin.lemon.console.system.model.entity.OptionDO;
-import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.apache.ibatis.annotations.Mapper;
+import top.continew.starter.data.mapper.BaseMapper;
 
 /**
  * 参数 Mapper

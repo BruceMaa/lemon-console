@@ -2,7 +2,7 @@ package cn.onesorigin.lemon.console.common.config.mybatis;
 
 import cn.hutool.core.util.ObjectUtil;
 import cn.onesorigin.lemon.console.common.base.model.entity.BaseDO;
-import cn.onesorigin.lemon.console.common.content.UserContextHolder;
+import cn.onesorigin.lemon.console.common.context.UserContextHolder;
 import com.baomidou.mybatisplus.core.handlers.MetaObjectHandler;
 import org.apache.ibatis.reflection.MetaObject;
 
@@ -44,7 +44,6 @@ public class MyBatisPlusMetaObjectHandler implements MetaObjectHandler {
             return;
         }
         Long createdBy = UserContextHolder.getUserId();
-        createdBy = 1L; // FIXME
         LocalDateTime createdAt = LocalDateTime.now();
         if (metaObject.getOriginalObject() instanceof BaseDO baseDO) {
             // 继承了 BaseDO 的类，填充创建信息字段
@@ -68,7 +67,6 @@ public class MyBatisPlusMetaObjectHandler implements MetaObjectHandler {
             return;
         }
         Long modifiedBy = UserContextHolder.getUserId();
-        modifiedBy = 1L;  // FIXME
         LocalDateTime modifiedAt = LocalDateTime.now();
         if (metaObject.getOriginalObject() instanceof BaseDO baseDO) {
             // 继承了 BaseDO 的类，填充修改信息

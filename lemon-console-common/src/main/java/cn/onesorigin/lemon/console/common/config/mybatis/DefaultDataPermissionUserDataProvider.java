@@ -1,6 +1,6 @@
 package cn.onesorigin.lemon.console.common.config.mybatis;
 
-import cn.onesorigin.lemon.console.common.content.UserContextHolder;
+import cn.onesorigin.lemon.console.common.context.UserContextHolder;
 import top.continew.starter.core.util.CollUtils;
 import top.continew.starter.extension.datapermission.enums.DataScope;
 import top.continew.starter.extension.datapermission.model.RoleData;
