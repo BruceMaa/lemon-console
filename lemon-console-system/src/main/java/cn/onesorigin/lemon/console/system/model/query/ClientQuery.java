@@ -6,8 +6,6 @@ import lombok.AccessLevel;
 import lombok.Data;
 import lombok.experimental.FieldDefaults;
 
-import java.util.List;
-
 /**
  * 客户端查询条件
  *
@@ -24,12 +22,6 @@ public class ClientQuery {
      */
     @Schema(description = "客户端类型")
     String clientType;
-
-    /**
-     * 认证类型
-     */
-    @Schema(description = "认证类型")
-    List<String> authType;
 
     /**
      * 状态

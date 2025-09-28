@@ -1,5 +1,6 @@
 package cn.onesorigin.lemon.console.system.model.req;
 
+import cn.onesorigin.lemon.console.auth.enums.AuthTypeEnum;
 import cn.onesorigin.lemon.console.common.enums.DisEnableStatusEnum;
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.NotBlank;
