@@ -21,5 +21,5 @@ public interface UserInfoConvert {
     @Mapping(target = "registrationDate", ignore = true)
     @Mapping(target = "pwdExpired", ignore = true)
     @Mapping(target = "permissions", ignore = true)
-    UserInfoResp convert(UserDetailResp userDetailResp);
+    UserInfoResp toResp(UserDetailResp userDetailResp);
 }

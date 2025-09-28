@@ -8,7 +8,6 @@ import jakarta.validation.constraints.*;
 import lombok.AccessLevel;
 import lombok.Data;
 import lombok.experimental.FieldDefaults;
-import org.hibernate.validator.constraints.Length;
 import top.continew.starter.extension.crud.validation.CrudValidationGroup;
 import top.continew.starter.validation.constraints.Mobile;
 
@@ -52,7 +51,7 @@ public class UserReq {
      * 邮箱
      */
     @Schema(description = "邮箱", example = "123456789@qq.com")
-    @Length(max = 255, message = "邮箱长度不能超过 {max} 个字符")
+    @Size(max = 255, message = "邮箱长度不能超过 {max} 个字符")
     @Email(message = "邮箱格式不正确")
     String email;
 
@@ -88,7 +87,7 @@ public class UserReq {
      * 描述
      */
     @Schema(description = "描述", example = "张三描述信息")
-    @Length(max = 200, message = "描述长度不能超过 {max} 个字符")
+    @Size(max = 200, message = "描述长度不能超过 {max} 个字符")
     String description;
 
     /**

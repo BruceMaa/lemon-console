@@ -4,10 +4,10 @@ import cn.onesorigin.lemon.console.common.constant.RegexConstants;
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
+import jakarta.validation.constraints.Size;
 import lombok.AccessLevel;
 import lombok.Data;
 import lombok.experimental.FieldDefaults;
-import org.hibernate.validator.constraints.Length;
 import top.continew.starter.extension.crud.validation.CrudValidationGroup;
 
 /**
@@ -41,6 +41,6 @@ public class DictReq {
      * 描述
      */
     @Schema(description = "描述", example = "公告类型描述信息")
-    @Length(max = 200, message = "描述长度不能超过 {max} 个字符")
+    @Size(max = 200, message = "描述长度不能超过 {max} 个字符")
     String description;
 }

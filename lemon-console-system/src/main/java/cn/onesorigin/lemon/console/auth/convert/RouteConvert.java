@@ -21,7 +21,7 @@ public interface RouteConvert {
 
     RouteConvert INSTANCE = Mappers.getMapper(RouteConvert.class);
 
-    default RouteResp convert(Tree<Long> tree) {
+    default RouteResp toResp(Tree<Long> tree) {
         if (tree == null) {
             return null;
         }
@@ -45,15 +45,15 @@ public interface RouteConvert {
         // 处理子节点
         List<Tree<Long>> children = tree.getChildren();
         if (children != null && !children.isEmpty()) {
-            routeResp.setChildren(convert(children));
+            routeResp.setChildren(toResp(children));
         }
         return routeResp;
     }
 
-    default List<RouteResp> convert(List<Tree<Long>> trees) {
+    default List<RouteResp> toResp(List<Tree<Long>> trees) {
         if (trees == null) {
             return null;
         }
-        return trees.stream().map(this::convert).toList();
+        return trees.stream().map(this::toResp).toList();
     }
 }

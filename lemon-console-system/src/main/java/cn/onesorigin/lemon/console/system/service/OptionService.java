@@ -4,6 +4,8 @@ package cn.onesorigin.lemon.console.system.service;
 import cn.onesorigin.lemon.console.system.enums.OptionCategoryEnum;
 import cn.onesorigin.lemon.console.system.model.entity.OptionDO;
 import cn.onesorigin.lemon.console.system.model.query.OptionQuery;
+import cn.onesorigin.lemon.console.system.model.req.OptionReq;
+import cn.onesorigin.lemon.console.system.model.req.OptionValueResetReq;
 import cn.onesorigin.lemon.console.system.model.resp.OptionResp;
 import com.baomidou.mybatisplus.extension.service.IService;
 
@@ -45,4 +47,18 @@ public interface OptionService extends IService<OptionDO> {
      * @return 参数信息
      */
     Map<String, String> getByCategory(OptionCategoryEnum optionCategory);
+
+    /**
+     * 修改参数信息
+     *
+     * @param options 参数信息集合
+     */
+    void updateBatch(List<OptionReq> options);
+
+    /**
+     * 重置参数
+     *
+     * @param req 重置的参数信息
+     */
+    void resetValue(OptionValueResetReq req);
 }

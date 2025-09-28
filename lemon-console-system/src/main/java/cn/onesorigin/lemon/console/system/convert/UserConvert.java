@@ -24,5 +24,5 @@ public interface UserConvert {
     @Mapping(target = "passwordExpirationDays", ignore = true)
     @Mapping(target = "clientType", ignore = true)
     @Mapping(target = "clientId", ignore = true)
-    void copyField(UserDO userDO, @MappingTarget UserContext userContext);
+    void update(UserDO userDO, @MappingTarget UserContext userContext);
 }

@@ -6,10 +6,10 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 import lombok.AccessLevel;
 import lombok.Data;
 import lombok.experimental.FieldDefaults;
-import org.hibernate.validator.constraints.Length;
 import top.continew.starter.extension.crud.validation.CrudValidationGroup;
 
 /**
@@ -34,7 +34,7 @@ public class MenuReq {
      * 图标
      */
     @Schema(description = "图标", example = "user")
-    @Length(max = 50, message = "图标长度不能超过 {max} 个字符")
+    @Size(max = 50, message = "图标长度不能超过 {max} 个字符")
     String icon;
 
     /**
@@ -42,7 +42,7 @@ public class MenuReq {
      */
     @Schema(description = "标题", example = "用户管理")
     @NotBlank(message = "标题不能为空", groups = CrudValidationGroup.Create.class)
-    @Length(max = 30, message = "标题长度不能超过 {max} 个字符")
+    @Size(max = 30, message = "标题长度不能超过 {max} 个字符")
     String title;
 
     /**
@@ -57,28 +57,28 @@ public class MenuReq {
      * 权限标识
      */
     @Schema(description = "权限标识", example = "system:user:list")
-    @Length(max = 100, message = "权限标识长度不能超过 {max} 个字符")
+    @Size(max = 100, message = "权限标识长度不能超过 {max} 个字符")
     String permission;
 
     /**
      * 路由地址
      */
     @Schema(description = "路由地址", example = "/system/user")
-    @Length(max = 255, message = "路由地址长度不能超过 {max} 个字符")
+    @Size(max = 255, message = "路由地址长度不能超过 {max} 个字符")
     String path;
 
     /**
      * 组件名称
      */
     @Schema(description = "组件名称", example = "User")
-    @Length(max = 50, message = "组件名称长度不能超过 {max} 个字符")
+    @Size(max = 50, message = "组件名称长度不能超过 {max} 个字符")
     String name;
 
     /**
      * 组件路径
      */
     @Schema(description = "组件路径", example = "/system/user/index")
-    @Length(max = 255, message = "组件路径长度不能超过 {max} 个字符")
+    @Size(max = 255, message = "组件路径长度不能超过 {max} 个字符")
     String component;
 
     /**

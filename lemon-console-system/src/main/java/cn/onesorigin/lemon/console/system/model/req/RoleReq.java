@@ -6,10 +6,10 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
+import jakarta.validation.constraints.Size;
 import lombok.AccessLevel;
 import lombok.Data;
 import lombok.experimental.FieldDefaults;
-import org.hibernate.validator.constraints.Length;
 import top.continew.starter.extension.crud.validation.CrudValidationGroup;
 
 import java.util.ArrayList;
@@ -52,7 +52,7 @@ public class RoleReq {
      * 描述
      */
     @Schema(description = "描述", example = "测试人员描述信息")
-    @Length(max = 200, message = "描述长度不能超过 {max} 个字符")
+    @Size(max = 200, message = "描述长度不能超过 {max} 个字符")
     String description;
 
     /**

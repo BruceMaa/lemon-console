@@ -57,7 +57,7 @@ public class AuthController {
     public UserInfoResp getUserInfo() {
         var userContext = UserContextHolder.getContext();
         var userDetailResp = userService.get(userContext.getId());
-        var userInfoResp = UserInfoConvert.INSTANCE.convert(userDetailResp);
+        var userInfoResp = UserInfoConvert.INSTANCE.toResp(userDetailResp);
         userInfoResp.setPermissions(userContext.getPermissionCodes());
         userInfoResp.setRoles(userContext.getRoleCodes());
         userInfoResp.setPwdExpired(userContext.isPasswordExpired());

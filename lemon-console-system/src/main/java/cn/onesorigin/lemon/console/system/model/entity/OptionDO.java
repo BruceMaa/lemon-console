@@ -1,6 +1,7 @@
 package cn.onesorigin.lemon.console.system.model.entity;
 
 import cn.onesorigin.lemon.console.common.base.model.entity.BaseUpdateDO;
+import cn.onesorigin.lemon.console.system.enums.OptionCategoryEnum;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.AccessLevel;
 import lombok.Data;
@@ -20,7 +21,7 @@ public class OptionDO extends BaseUpdateDO {
     /**
      * 类别
      */
-    String category;
+    OptionCategoryEnum category;
 
     /**
      * 名称

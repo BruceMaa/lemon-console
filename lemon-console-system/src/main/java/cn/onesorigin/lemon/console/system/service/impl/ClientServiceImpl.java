@@ -23,7 +23,7 @@ public class ClientServiceImpl extends BaseServiceImpl<ClientMapper, ClientDO, C
         return baseMapper.lambdaQuery()
                 .eq(ClientDO::getClientId, clientId)
                 .oneOpt()
-                .map(ClientConvert.INSTANCE::convert)
+                .map(ClientConvert.INSTANCE::toResp)
                 .orElse(null);
     }
 }

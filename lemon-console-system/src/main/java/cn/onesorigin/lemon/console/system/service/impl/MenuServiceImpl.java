@@ -38,7 +38,7 @@ public class MenuServiceImpl extends BaseServiceImpl<MenuMapper, MenuDO, MenuRes
             return super.list(new MenuQuery(DisEnableStatusEnum.ENABLE), null);
         }
         List<MenuDO> menuList = baseMapper.findByRoleId(roleId);
-        List<MenuResp> list = MenuConvert.INSTANCE.convert(menuList);
+        List<MenuResp> list = MenuConvert.INSTANCE.toResp(menuList);
         list.forEach(super::fill);
         return list;
     }

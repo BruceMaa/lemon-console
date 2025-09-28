@@ -21,7 +21,7 @@ public interface MenuConvert {
 
     @Mapping(target = "disabled", ignore = true)
     @Mapping(target = "createdUsername", ignore = true)
-    MenuResp convert(MenuDO menuDO);
+    MenuResp toResp(MenuDO menuDO);
 
-    List<MenuResp> convert(List<MenuDO> menuDOList);
+    List<MenuResp> toResp(List<MenuDO> menuDOList);
 }

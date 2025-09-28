@@ -125,7 +125,7 @@ public class AuthServiceImpl implements AuthService {
             tree.putExtra("isHidden", m.getIsHidden());
             tree.putExtra("permission", m.getPermission());
         });
-        return RouteConvert.INSTANCE.convert(treeList);
+        return RouteConvert.INSTANCE.toResp(treeList);
     }
 
     private void preLogin(AccountLoginReq req) {
@@ -178,7 +178,7 @@ public class AuthServiceImpl implements AuthService {
         CompletableFuture.allOf(permissionFuture, roleFuture, passwordExpirationDaysFuture);
         UserContext userContext = new UserContext(permissionFuture.join(), roleFuture
                 .join(), passwordExpirationDaysFuture.join());
-        UserConvert.INSTANCE.copyField(user, userContext);
+        UserConvert.INSTANCE.update(user, userContext);
         // 设置登录配置参数
         SaLoginParameter loginParameter = new SaLoginParameter();
         loginParameter.setActiveTimeout(client.getActiveTimeout());

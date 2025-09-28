@@ -5,10 +5,10 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 import lombok.AccessLevel;
 import lombok.Data;
 import lombok.experimental.FieldDefaults;
-import org.hibernate.validator.constraints.Length;
 import top.continew.starter.extension.crud.validation.CrudValidationGroup;
 
 /**
@@ -33,7 +33,7 @@ public class DeptReq {
      */
     @Schema(description = "名称", example = "测试部")
     @NotBlank(message = "名称不能为空", groups = CrudValidationGroup.Create.class)
-    @Length(max = 30, message = "名称长度不能超过 {max} 个字符")
+    @Size(max = 30, message = "名称长度不能超过 {max} 个字符")
     String name;
 
     /**
@@ -47,7 +47,7 @@ public class DeptReq {
      * 描述
      */
     @Schema(description = "描述", example = "测试部描述信息")
-    @Length(max = 200, message = "描述长度不能超过 {max} 个字符")
+    @Size(max = 200, message = "描述长度不能超过 {max} 个字符")
     String description;
 
     /**

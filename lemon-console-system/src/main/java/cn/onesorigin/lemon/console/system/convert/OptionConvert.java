@@ -1,6 +1,7 @@
 package cn.onesorigin.lemon.console.system.convert;
 
 import cn.onesorigin.lemon.console.system.model.entity.OptionDO;
+import cn.onesorigin.lemon.console.system.model.req.OptionReq;
 import cn.onesorigin.lemon.console.system.model.resp.OptionResp;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
@@ -18,7 +19,9 @@ public interface OptionConvert {
 
     OptionConvert INSTANCE = Mappers.getMapper(OptionConvert.class);
 
-    OptionResp convert(OptionDO optionDO);
+    OptionResp toResp(OptionDO optionDO);
 
-    List<OptionResp> convert(List<OptionDO> optionDOs);
+    List<OptionResp> toResp(List<OptionDO> optionDOs);
+
+    List<OptionDO> toDO(List<OptionReq> optionReqs);
 }

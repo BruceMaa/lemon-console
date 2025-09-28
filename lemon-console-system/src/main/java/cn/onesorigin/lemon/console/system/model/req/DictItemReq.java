@@ -5,10 +5,10 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 import lombok.AccessLevel;
 import lombok.Data;
 import lombok.experimental.FieldDefaults;
-import org.hibernate.validator.constraints.Length;
 import top.continew.starter.extension.crud.validation.CrudValidationGroup;
 
 /**
@@ -34,7 +34,7 @@ public class DictItemReq {
      */
     @Schema(description = "标签", example = "通知")
     @NotBlank(message = "标签不能为空", groups = CrudValidationGroup.Create.class)
-    @Length(max = 30, message = "标签长度不能超过 {max} 个字符")
+    @Size(max = 30, message = "标签长度不能超过 {max} 个字符")
     String label;
 
     /**
@@ -42,14 +42,14 @@ public class DictItemReq {
      */
     @Schema(description = "值", example = "1")
     @NotBlank(message = "值不能为空", groups = CrudValidationGroup.Create.class)
-    @Length(max = 30, message = "值长度不能超过 {max} 个字符")
+    @Size(max = 30, message = "值长度不能超过 {max} 个字符")
     String value;
 
     /**
      * 标签颜色
      */
     @Schema(description = "标签颜色", example = "blue")
-    @Length(max = 30, message = "标签颜色长度不能超过 {max} 个字符")
+    @Size(max = 30, message = "标签颜色长度不能超过 {max} 个字符")
     String color;
 
     /**
@@ -63,7 +63,7 @@ public class DictItemReq {
      * 描述
      */
     @Schema(description = "描述", example = "通知描述信息")
-    @Length(max = 200, message = "描述长度不能超过 {max} 个字符")
+    @Size(max = 200, message = "描述长度不能超过 {max} 个字符")
     String description;
 
     /**
