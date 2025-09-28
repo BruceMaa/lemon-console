@@ -9,7 +9,6 @@ import jakarta.validation.constraints.Size;
 import lombok.AccessLevel;
 import lombok.Data;
 import lombok.experimental.FieldDefaults;
-import top.continew.starter.extension.crud.validation.CrudValidationGroup;
 
 /**
  * 字典项创建或修改请求参数
@@ -26,14 +25,14 @@ public class DictItemReq {
      * 所属字典
      */
     @Schema(description = "所属字典", example = "1")
-    @NotNull(message = "所属字典不能为空", groups = CrudValidationGroup.Create.class)
+    @NotNull(message = "所属字典不能为空")
     Long dictId;
 
     /**
      * 标签
      */
     @Schema(description = "标签", example = "通知")
-    @NotBlank(message = "标签不能为空", groups = CrudValidationGroup.Create.class)
+    @NotBlank(message = "标签不能为空")
     @Size(max = 30, message = "标签长度不能超过 {max} 个字符")
     String label;
 
@@ -41,7 +40,7 @@ public class DictItemReq {
      * 值
      */
     @Schema(description = "值", example = "1")
-    @NotBlank(message = "值不能为空", groups = CrudValidationGroup.Create.class)
+    @NotBlank(message = "值不能为空")
     @Size(max = 30, message = "值长度不能超过 {max} 个字符")
     String value;
 

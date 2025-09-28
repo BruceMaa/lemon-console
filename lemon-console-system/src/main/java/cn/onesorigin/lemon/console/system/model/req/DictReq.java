@@ -8,7 +8,6 @@ import jakarta.validation.constraints.Size;
 import lombok.AccessLevel;
 import lombok.Data;
 import lombok.experimental.FieldDefaults;
-import top.continew.starter.extension.crud.validation.CrudValidationGroup;
 
 /**
  * 字典创建或修改请求参数
@@ -25,7 +24,7 @@ public class DictReq {
      * 名称
      */
     @Schema(description = "名称", example = "公告类型")
-    @NotBlank(message = "名称不能为空", groups = CrudValidationGroup.Create.class)
+    @NotBlank(message = "名称不能为空")
     @Pattern(regexp = RegexConstants.GENERAL_NAME, message = "名称长度为 2-30 个字符，支持中文、字母、数字、下划线，短横线")
     String name;
 
@@ -33,7 +32,7 @@ public class DictReq {
      * 编码
      */
     @Schema(description = "编码", example = "notice_type")
-    @NotBlank(message = "编码不能为空", groups = CrudValidationGroup.Create.class)
+    @NotBlank(message = "编码不能为空")
     @Pattern(regexp = RegexConstants.GENERAL_CODE, message = "编码长度为 2-30 个字符，支持大小写字母、数字、下划线，以字母开头")
     String code;
 
