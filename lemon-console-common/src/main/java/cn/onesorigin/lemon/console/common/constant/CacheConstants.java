@@ -39,4 +39,9 @@ public interface CacheConstants {
      * 字典缓存键前缀
      */
     String DICT_KEY_PREFIX = "DICT" + DELIMITER;
+
+    /**
+     * 角色菜单缓存键前缀
+     */
+    String ROLE_MENU_KEY_PREFIX = "ROLE_MENU" + DELIMITER;
 }

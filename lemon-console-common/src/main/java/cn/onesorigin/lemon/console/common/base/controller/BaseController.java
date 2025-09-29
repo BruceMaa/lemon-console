@@ -30,8 +30,9 @@ import java.lang.reflect.Method;
  */
 
 public class BaseController<S extends BaseService<L, D, Q, C>, L, D, Q, C> extends AbstractCrudController<S, L, D, Q, C> {
+
     @Override
-    public void preHandle(CrudApi crudApi, Object[] args, Method targetMethod, Class<?> targetClass) {
+    public void preHandle(CrudApi crudApi, Object[] args, Method targetMethod, Class<?> targetClass) throws Exception {
         // 忽略带 sign 请求权限校验
         var saRequest = SaHolder.getRequest();
         var paramNames = saRequest.getParamNames();

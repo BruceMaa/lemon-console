@@ -1,6 +1,6 @@
 package cn.onesorigin.lemon.console.system.model.resp;
 
-import cn.onesorigin.lemon.console.common.base.model.resp.BaseResp;
+import cn.onesorigin.lemon.console.common.base.model.resp.BaseDetailResp;
 import cn.onesorigin.lemon.console.common.enums.DisEnableStatusEnum;
 import cn.onesorigin.lemon.console.system.enums.MenuTypeEnum;
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -19,7 +19,7 @@ import top.continew.starter.extension.crud.annotation.TreeField;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @TreeField(value = "id")
 @Schema(description = "菜单响应参数")
-public class MenuResp extends BaseResp {
+public class MenuResp extends BaseDetailResp {
 
     /**
      * 标题
