@@ -57,53 +57,6 @@ COMMENT ON COLUMN "sys_client"."modified_by"    IS '修改人';
 COMMENT ON COLUMN "sys_client"."modified_at"    IS '修改时间';
 COMMENT ON TABLE  "sys_client"                  IS '客户端表';
 
-
-CREATE TABLE IF NOT EXISTS "sys_user" (
-    "id"             int8         NOT NULL,
-    "username"       varchar(64)  NOT NULL,
-    "nickname"       varchar(30)  NOT NULL,
-    "password"       varchar(255) DEFAULT NULL,
-    "gender"         int2         NOT NULL DEFAULT 0,
-    "email"          varchar(255) DEFAULT NULL,
-    "phone"          varchar(255) DEFAULT NULL,
-    "avatar"         text         DEFAULT NULL,
-    "description"    varchar(200) DEFAULT NULL,
-    "status"         int2         NOT NULL DEFAULT 1,
-    "is_system"      bool         NOT NULL DEFAULT false,
-    "pwd_reset_time" timestamp    DEFAULT NULL,
-    "dept_id"        int8         NOT NULL,
-    "created_by"    int8         DEFAULT NULL,
-    "created_at"    timestamp    NOT NULL,
-    "modified_by"    int8         DEFAULT NULL,
-    "modified_at"    timestamp    DEFAULT NULL,
-    PRIMARY KEY ("id")
-);
-CREATE UNIQUE INDEX "uk_user_username" ON "sys_user" ("username");
-CREATE UNIQUE INDEX "uk_user_email"    ON "sys_user" ("email");
-CREATE UNIQUE INDEX "uk_user_phone"    ON "sys_user" ("phone");
-CREATE INDEX "idx_user_dept_id"        ON "sys_user" ("dept_id");
-CREATE INDEX "idx_user_created_by"    ON "sys_user" ("created_by");
-CREATE INDEX "idx_user_modified_by"    ON "sys_user" ("modified_by");
-COMMENT ON COLUMN "sys_user"."id"             IS 'ID';
-COMMENT ON COLUMN "sys_user"."username"       IS '用户名';
-COMMENT ON COLUMN "sys_user"."nickname"       IS '昵称';
-COMMENT ON COLUMN "sys_user"."password"       IS '密码';
-COMMENT ON COLUMN "sys_user"."gender"         IS '性别（0：未知；1：男；2：女）';
-COMMENT ON COLUMN "sys_user"."email"          IS '邮箱';
-COMMENT ON COLUMN "sys_user"."phone"          IS '手机号码';
-COMMENT ON COLUMN "sys_user"."avatar"         IS '头像';
-COMMENT ON COLUMN "sys_user"."description"    IS '描述';
-COMMENT ON COLUMN "sys_user"."status"         IS '状态（1：启用；0：禁用）';
-COMMENT ON COLUMN "sys_user"."is_system"      IS '是否为系统内置数据';
-COMMENT ON COLUMN "sys_user"."pwd_reset_time" IS '最后一次修改密码时间';
-COMMENT ON COLUMN "sys_user"."dept_id"        IS '部门ID';
-COMMENT ON COLUMN "sys_user"."created_by"    IS '创建人';
-COMMENT ON COLUMN "sys_user"."created_at"    IS '创建时间';
-COMMENT ON COLUMN "sys_user"."modified_by"    IS '修改人';
-COMMENT ON COLUMN "sys_user"."modified_at"    IS '修改时间';
-COMMENT ON TABLE  "sys_user"                  IS '用户表';
-
-
 CREATE TABLE IF NOT EXISTS "sys_dict" (
     "id"          int8         NOT NULL,
     "name"        varchar(30)  NOT NULL,
@@ -161,6 +114,141 @@ COMMENT ON COLUMN "sys_dict_item"."created_at" IS '创建时间';
 COMMENT ON COLUMN "sys_dict_item"."modified_by" IS '修改人';
 COMMENT ON COLUMN "sys_dict_item"."modified_at" IS '修改时间';
 COMMENT ON TABLE  "sys_dict_item"               IS '字典项表';
+
+CREATE TABLE IF NOT EXISTS "sys_storage" (
+    "id"          int8         NOT NULL,
+    "name"        varchar(100) NOT NULL,
+    "code"        varchar(30)  NOT NULL,
+    "type"        int2         NOT NULL DEFAULT 1,
+    "access_key"  varchar(255) DEFAULT NULL,
+    "secret_key"  varchar(255) DEFAULT NULL,
+    "endpoint"    varchar(255) DEFAULT NULL,
+    "bucket_name" varchar(255) NOT NULL,
+    "domain"      varchar(255) DEFAULT NULL,
+    "description" varchar(200) DEFAULT NULL,
+    "is_default"  bool         NOT NULL DEFAULT false,
+    "sort"        int4         NOT NULL DEFAULT 999,
+    "status"      int2         NOT NULL DEFAULT 1,
+    "created_by" int8         NOT NULL,
+    "created_at" timestamp    NOT NULL,
+    "modified_by" int8         DEFAULT NULL,
+    "modified_at" timestamp    DEFAULT NULL,
+    PRIMARY KEY ("id")
+);
+CREATE UNIQUE INDEX "uk_storage_code"  ON "sys_storage" ("code");
+CREATE INDEX "idx_storage_created_by" ON "sys_storage" ("created_by");
+CREATE INDEX "idx_storage_modified_by" ON "sys_storage" ("modified_by");
+COMMENT ON COLUMN "sys_storage"."id"          IS 'ID';
+COMMENT ON COLUMN "sys_storage"."name"        IS '名称';
+COMMENT ON COLUMN "sys_storage"."code"        IS '编码';
+COMMENT ON COLUMN "sys_storage"."type"        IS '类型（1：本地存储；2：对象存储）';
+COMMENT ON COLUMN "sys_storage"."access_key"  IS 'Access Key';
+COMMENT ON COLUMN "sys_storage"."secret_key"  IS 'Secret Key';
+COMMENT ON COLUMN "sys_storage"."endpoint"    IS 'Endpoint';
+COMMENT ON COLUMN "sys_storage"."bucket_name" IS 'Bucket';
+COMMENT ON COLUMN "sys_storage"."domain"      IS '域名';
+COMMENT ON COLUMN "sys_storage"."description" IS '描述';
+COMMENT ON COLUMN "sys_storage"."is_default"  IS '是否为默认存储';
+COMMENT ON COLUMN "sys_storage"."sort"        IS '排序';
+COMMENT ON COLUMN "sys_storage"."status"      IS '状态（1：启用；2：禁用）';
+COMMENT ON COLUMN "sys_storage"."created_by" IS '创建人';
+COMMENT ON COLUMN "sys_storage"."created_at" IS '创建时间';
+COMMENT ON COLUMN "sys_storage"."modified_by" IS '修改人';
+COMMENT ON COLUMN "sys_storage"."modified_at" IS '修改时间';
+COMMENT ON TABLE  "sys_storage"               IS '存储表';
+
+CREATE TABLE IF NOT EXISTS "sys_file" (
+    "id"                 int8         NOT NULL,
+    "name"               varchar(255) NOT NULL,
+    "original_name"      varchar(255) NOT NULL,
+    "size"               int8         DEFAULT NULL,
+    "parent_path"        varchar(512) NOT NULL DEFAULT '/',
+    "path"               varchar(512) NOT NULL,
+    "extension"          varchar(100) DEFAULT NULL,
+    "content_type"       varchar(255) DEFAULT NULL,
+    "type"               int2         NOT NULL DEFAULT 1,
+    "sha256"       		 varchar(256) NOT NULL,
+    "metadata"           text         DEFAULT NULL,
+    "thumbnail_name"     varchar(255) DEFAULT NULL,
+    "thumbnail_size"     int8         DEFAULT NULL,
+    "thumbnail_metadata" text         DEFAULT NULL,
+    "storage_id"         int8         NOT NULL,
+    "created_by"        int8         NOT NULL,
+    "created_at"        timestamp    NOT NULL,
+    "modified_by"        int8         DEFAULT NULL,
+    "modified_at"        timestamp    DEFAULT NULL,
+    PRIMARY KEY ("id")
+);
+CREATE INDEX "idx_file_type" ON "sys_file" ("type");
+CREATE INDEX "idx_file_sha256" ON "sys_file" ("sha256");
+CREATE INDEX "idx_file_storage_id" ON "sys_file" ("storage_id");
+CREATE INDEX "idx_file_created_by" ON "sys_file" ("created_by");
+COMMENT ON COLUMN "sys_file"."id"                 IS 'ID';
+COMMENT ON COLUMN "sys_file"."name"               IS '名称';
+COMMENT ON COLUMN "sys_file"."original_name"      IS '原始名称';
+COMMENT ON COLUMN "sys_file"."size"               IS '大小（字节）';
+COMMENT ON COLUMN "sys_file"."parent_path"        IS '上级目录';
+COMMENT ON COLUMN "sys_file"."path"               IS '路径';
+COMMENT ON COLUMN "sys_file"."extension"          IS '扩展名';
+COMMENT ON COLUMN "sys_file"."content_type"       IS '内容类型';
+COMMENT ON COLUMN "sys_file"."type"               IS '类型（0: 目录；1：其他；2：图片；3：文档；4：视频；5：音频）';
+COMMENT ON COLUMN "sys_file"."sha256"             IS 'SHA256值';
+COMMENT ON COLUMN "sys_file"."metadata"           IS '元数据';
+COMMENT ON COLUMN "sys_file"."thumbnail_name"     IS '缩略图名称';
+COMMENT ON COLUMN "sys_file"."thumbnail_size"     IS '缩略图大小（字节)';
+COMMENT ON COLUMN "sys_file"."thumbnail_metadata" IS '缩略图元数据';
+COMMENT ON COLUMN "sys_file"."storage_id"         IS '存储ID';
+COMMENT ON COLUMN "sys_file"."created_by"        IS '创建人';
+COMMENT ON COLUMN "sys_file"."created_at"        IS '创建时间';
+COMMENT ON COLUMN "sys_file"."modified_by"        IS '修改人';
+COMMENT ON COLUMN "sys_file"."modified_at"        IS '修改时间';
+COMMENT ON TABLE  "sys_file"                      IS '文件表';
+
+
+CREATE TABLE IF NOT EXISTS "sys_user" (
+    "id"             int8         NOT NULL,
+    "username"       varchar(64)  NOT NULL,
+    "nickname"       varchar(30)  NOT NULL,
+    "password"       varchar(255) DEFAULT NULL,
+    "gender"         int2         NOT NULL DEFAULT 0,
+    "email"          varchar(255) DEFAULT NULL,
+    "phone"          varchar(255) DEFAULT NULL,
+    "avatar"         text         DEFAULT NULL,
+    "description"    varchar(200) DEFAULT NULL,
+    "status"         int2         NOT NULL DEFAULT 1,
+    "is_system"      bool         NOT NULL DEFAULT false,
+    "pwd_reset_time" timestamp    DEFAULT NULL,
+    "dept_id"        int8         NOT NULL,
+    "created_by"    int8         DEFAULT NULL,
+    "created_at"    timestamp    NOT NULL,
+    "modified_by"    int8         DEFAULT NULL,
+    "modified_at"    timestamp    DEFAULT NULL,
+    PRIMARY KEY ("id")
+);
+CREATE UNIQUE INDEX "uk_user_username" ON "sys_user" ("username");
+CREATE UNIQUE INDEX "uk_user_email"    ON "sys_user" ("email");
+CREATE UNIQUE INDEX "uk_user_phone"    ON "sys_user" ("phone");
+CREATE INDEX "idx_user_dept_id"        ON "sys_user" ("dept_id");
+CREATE INDEX "idx_user_created_by"    ON "sys_user" ("created_by");
+CREATE INDEX "idx_user_modified_by"    ON "sys_user" ("modified_by");
+COMMENT ON COLUMN "sys_user"."id"             IS 'ID';
+COMMENT ON COLUMN "sys_user"."username"       IS '用户名';
+COMMENT ON COLUMN "sys_user"."nickname"       IS '昵称';
+COMMENT ON COLUMN "sys_user"."password"       IS '密码';
+COMMENT ON COLUMN "sys_user"."gender"         IS '性别（0：未知；1：男；2：女）';
+COMMENT ON COLUMN "sys_user"."email"          IS '邮箱';
+COMMENT ON COLUMN "sys_user"."phone"          IS '手机号码';
+COMMENT ON COLUMN "sys_user"."avatar"         IS '头像';
+COMMENT ON COLUMN "sys_user"."description"    IS '描述';
+COMMENT ON COLUMN "sys_user"."status"         IS '状态（1：启用；0：禁用）';
+COMMENT ON COLUMN "sys_user"."is_system"      IS '是否为系统内置数据';
+COMMENT ON COLUMN "sys_user"."pwd_reset_time" IS '最后一次修改密码时间';
+COMMENT ON COLUMN "sys_user"."dept_id"        IS '部门ID';
+COMMENT ON COLUMN "sys_user"."created_by"    IS '创建人';
+COMMENT ON COLUMN "sys_user"."created_at"    IS '创建时间';
+COMMENT ON COLUMN "sys_user"."modified_by"    IS '修改人';
+COMMENT ON COLUMN "sys_user"."modified_at"    IS '修改时间';
+COMMENT ON TABLE  "sys_user"                  IS '用户表';
 
 
 CREATE TABLE IF NOT EXISTS "sys_menu" (

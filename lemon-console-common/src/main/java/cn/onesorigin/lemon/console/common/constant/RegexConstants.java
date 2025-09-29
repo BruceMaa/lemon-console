@@ -36,4 +36,14 @@ public interface RegexConstants {
      * 特殊字符正则
      */
     String SPECIAL_CHARACTER = "[-_`~!@#$%^&*()+=|{}':;',\\\\[\\\\].<>/?~！@#￥%……&*（）——+|{}【】‘；：”“’。，、？]|\\n|\\r|\\t";
+
+    /**
+     * HTTP URL 正则
+     */
+    String URL_HTTP = "^(https?)://[\\w-+&@#/%?=~_|!:,.;]*[\\w-+&@#/%=~_|]$";
+
+    /**
+     * HTTP URL 正则（非 IP 地址）
+     */
+    String URL_HTTP_NOT_IP = "^(https?:\\/\\/)([a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,}(\\/[^\\s]*)?$";
 }

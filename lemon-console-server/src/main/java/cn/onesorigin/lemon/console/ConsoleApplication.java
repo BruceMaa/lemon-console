@@ -9,6 +9,7 @@ import com.github.xiaoymin.knife4j.spring.configuration.Knife4jProperties;
 import io.swagger.v3.oas.annotations.Hidden;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.dromara.x.file.storage.spring.EnableFileStorage;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.boot.SpringApplication;
@@ -32,6 +33,7 @@ import top.continew.starter.web.model.R;
 @RequiredArgsConstructor
 @EnableCrudApi
 @EnableGlobalResponse
+@EnableFileStorage
 @EnableMethodCache(basePackages = "cn.onesorigin.lemon.console")
 @RestController
 @SpringBootApplication
@@ -68,7 +70,7 @@ public class ConsoleApplication implements ApplicationRunner {
         if (!knife4jProperties.isProduction()) {
             log.info("接口文档: {}/doc.html", baseUrl);
         }
-        log.info("Lemon Console: 柠檬控制台");
+        log.info("Lemon Console: 柠檬系统控制台");
         log.info("--------------------------------------------------------");
     }
 

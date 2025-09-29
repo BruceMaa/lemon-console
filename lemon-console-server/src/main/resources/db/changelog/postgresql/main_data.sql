@@ -77,14 +77,6 @@ INSERT INTO "sys_client"
 VALUES
 (1, 'ef51c9a3e9046c4f2ea45142c8a8344a', 'PC', '["ACCOUNT"]', 1800, 86400, 1, 1, NOW());
 
-
--- 初始化默认用户：admin/admin123；test/test123
-INSERT INTO "sys_user"
-("id", "username", "nickname", "password", "gender", "email", "phone", "avatar", "description", "status", "is_system", "pwd_reset_time", "dept_id", "created_by", "created_at")
-VALUES
-(1, 'admin', '超级管理员', '{bcrypt}$2a$10$4jGwK2BMJ7FgVR.mgwGodey8.xR8FLoU1XSXpxJ9nZQt.pufhasSa', 1, '42190c6c5639d2ca4edb4150a35e058559ccf8270361a23745a2fd285a273c28', '5bda89a4609a65546422ea56bfe5eab4', NULL, '系统初始用户', 1, true, NOW(), 1, 1, NOW());
-
-
 -- 初始化默认字典
 INSERT INTO "sys_dict"
 ("id", "name", "code", "description", "is_system", "created_by", "created_at")
@@ -100,6 +92,12 @@ VALUES
 (3, '桌面端', 'PC', 'primary', 1, NULL, 1, 2, 1, NOW()),
 (4, '安卓', 'ANDROID', 'success', 2, NULL, 1, 2, 1, NOW()),
 (5, '小程序', 'MINIAPP', 'warning', 3, NULL, 1, 2, 1, NOW());
+
+-- 初始化默认存储
+INSERT INTO "sys_storage"
+("id", "name", "code", "type", "access_key", "secret_key", "endpoint", "bucket_name", "domain", "description", "is_default", "sort", "status", "created_by", "created_at")
+VALUES
+(1, '开发环境', 'local_dev', 1, NULL, NULL, NULL, 'C:/lemon-console/data/file/', 'http://localhost:8080/files/', '本地存储', true, 1, 1, 1, NOW());
 
 
 INSERT INTO "sys_menu"
@@ -228,6 +226,14 @@ VALUES
 (1, '超级管理员', 'super_admin', 1, '系统初始角色', 0, true, 1, NOW()),
 (2, '系统管理员', 'sys_admin', 1, NULL, 1, false, 1, NOW()),
 (3, '普通用户', 'general', 4, NULL, 2, false, 1, NOW());
+
+
+-- 初始化默认用户：admin/admin123；test/test123
+INSERT INTO "sys_user"
+("id", "username", "nickname", "password", "gender", "email", "phone", "avatar", "description", "status", "is_system", "pwd_reset_time", "dept_id", "created_by", "created_at")
+VALUES
+(1, 'admin', '超级管理员', '{bcrypt}$2a$10$4jGwK2BMJ7FgVR.mgwGodey8.xR8FLoU1XSXpxJ9nZQt.pufhasSa', 1, '42190c6c5639d2ca4edb4150a35e058559ccf8270361a23745a2fd285a273c28', '5bda89a4609a65546422ea56bfe5eab4', NULL, '系统初始用户', 1, true, NOW(), 1, 1, NOW());
+
 
 -- 初始化默认用户和角色关联数据
 INSERT INTO "sys_user_role"
