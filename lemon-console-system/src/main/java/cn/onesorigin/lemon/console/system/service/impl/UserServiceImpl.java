@@ -145,6 +145,14 @@ public class UserServiceImpl extends BaseServiceImpl<UserMapper, UserDO, UserRes
     }
 
     @Override
+    public Long countByDeptIds(List<Long> deptIds) {
+        if (CollUtil.isEmpty(deptIds)) {
+            return 0L;
+        }
+        return baseMapper.lambdaQuery().in(UserDO::getDeptId, deptIds).count();
+    }
+
+    @Override
     protected QueryWrapper<UserDO> buildQueryWrapper(UserQuery query) {
         String description = query.getDescription();
         DisEnableStatusEnum status = query.getStatus();

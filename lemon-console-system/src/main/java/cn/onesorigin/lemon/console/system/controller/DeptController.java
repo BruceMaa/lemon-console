@@ -28,6 +28,7 @@ import top.continew.starter.extension.crud.enums.Api;
         Api.CREATE,
         Api.UPDATE,
         Api.BATCH_DELETE,
+        Api.EXPORT,
         Api.DICT_TREE
 })
 public class DeptController extends BaseController<DeptService, DeptResp, DeptResp, DeptQuery, DeptReq> {

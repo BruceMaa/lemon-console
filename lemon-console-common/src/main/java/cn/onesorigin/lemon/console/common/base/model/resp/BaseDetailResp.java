@@ -3,6 +3,7 @@ package cn.onesorigin.lemon.console.common.base.model.resp;
 import cn.crane4j.annotation.Assemble;
 import cn.crane4j.annotation.Mapping;
 import cn.crane4j.annotation.condition.ConditionOnPropertyNotNull;
+import cn.idev.excel.annotation.ExcelProperty;
 import cn.onesorigin.lemon.console.common.constant.ContainerConstants;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -34,11 +35,13 @@ public class BaseDetailResp extends BaseResp {
      * 修改人用户名
      */
     @Schema(description = "修改人用户名")
+    @ExcelProperty(value = "修改人", order = Integer.MAX_VALUE - 2)
     String modifiedUsername;
 
     /**
      * 修改时间
      */
     @Schema(description = "修改时间")
+    @ExcelProperty(value = "修改时间", order = Integer.MAX_VALUE - 1)
     LocalDateTime modifiedAt;
 }

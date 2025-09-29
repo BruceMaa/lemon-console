@@ -9,6 +9,8 @@ import cn.onesorigin.lemon.console.system.model.resp.UserDetailResp;
 import cn.onesorigin.lemon.console.system.model.resp.UserResp;
 import top.continew.starter.data.service.IService;
 
+import java.util.List;
+
 /**
  * 用户业务接口
  *
@@ -35,8 +37,8 @@ public interface UserService extends BaseService<UserResp, UserDetailResp, UserQ
     /**
      * 修改基础信息
      *
-     * @param updateReq    修改的信息
-     * @param userId 用户ID
+     * @param updateReq 修改的信息
+     * @param userId    用户ID
      */
     void updateBasicInfo(UserBasicInfoUpdateReq updateReq, Long userId);
 
@@ -66,4 +68,12 @@ public interface UserService extends BaseService<UserResp, UserDetailResp, UserQ
      * @param userId      用户ID
      */
     void updateEmail(String newEmail, String oldPassword, Long userId);
+
+    /**
+     * 根据部门ID列表查询用户数量
+     *
+     * @param deptIds 部门ID列表
+     * @return 用户数量
+     */
+    Long countByDeptIds(List<Long> deptIds);
 }
