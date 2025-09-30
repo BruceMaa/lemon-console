@@ -8,6 +8,8 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import top.continew.starter.core.util.CollUtils;
+import top.continew.starter.data.service.impl.ServiceImpl;
 
 import java.util.List;
 
@@ -20,9 +22,7 @@ import java.util.List;
 @Slf4j
 @RequiredArgsConstructor
 @Service
-public class RoleDeptServiceImpl implements RoleDeptService {
-
-    private final RoleDeptMapper baseMapper;
+public class RoleDeptServiceImpl extends ServiceImpl<RoleDeptMapper, RoleDeptDO> implements RoleDeptService {
 
     @Transactional(rollbackFor = Exception.class)
     @Override
@@ -31,5 +31,24 @@ public class RoleDeptServiceImpl implements RoleDeptService {
             return;
         }
         baseMapper.lambdaUpdate().in(RoleDeptDO::getDeptId, deptIds).remove();
+    }
+
+    @Transactional(rollbackFor = Exception.class)
+    @Override
+    public boolean saveOrUpdate(List<Long> deptIds, Long roleId) {
+        // 删除原有关联
+        baseMapper.lambdaUpdate().eq(RoleDeptDO::getRoleId, roleId).remove();
+        // 保存最新关联
+        List<RoleDeptDO> roleDeptList = CollUtils.mapToList(deptIds, deptId -> new RoleDeptDO(roleId, deptId));
+        return baseMapper.insertBatch(roleDeptList);
+    }
+
+    @Transactional(rollbackFor = Exception.class)
+    @Override
+    public void deleteByRoleIds(List<Long> roleIds) {
+        if (CollUtil.isEmpty(roleIds)) {
+            return;
+        }
+        baseMapper.lambdaUpdate().in(RoleDeptDO::getRoleId, roleIds).remove();
     }
 }

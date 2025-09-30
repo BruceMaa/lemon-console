@@ -4,6 +4,7 @@ import cn.onesorigin.lemon.console.common.base.service.BaseService;
 import cn.onesorigin.lemon.console.common.context.RoleContext;
 import cn.onesorigin.lemon.console.system.model.entity.RoleDO;
 import cn.onesorigin.lemon.console.system.model.query.RoleQuery;
+import cn.onesorigin.lemon.console.system.model.req.RolePermissionUpdateReq;
 import cn.onesorigin.lemon.console.system.model.req.RoleReq;
 import cn.onesorigin.lemon.console.system.model.resp.RoleDetailResp;
 import cn.onesorigin.lemon.console.system.model.resp.RoleResp;
@@ -50,4 +51,27 @@ public interface RoleService extends BaseService<RoleResp, RoleDetailResp, RoleQ
      * @return 角色集合
      */
     List<RoleDO> findRolesByUserIds(List<Long> ids);
+
+    /**
+     * 更新角色权限
+     *
+     * @param id  角色ID
+     * @param req 权限更新请求参数
+     */
+    void updatePermission(Long id, RolePermissionUpdateReq req);
+
+    /**
+     * 更新用户上下文
+     *
+     * @param roleId 角色 ID
+     */
+    void updateUserContext(Long roleId);
+
+    /**
+     * 根据用户ID集合查询角色关联关系
+     *
+     * @param id      角色ID
+     * @param userIds 用户ID列表
+     */
+    void assignToUsers(Long id, List<Long> userIds);
 }

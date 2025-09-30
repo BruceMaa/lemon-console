@@ -1,6 +1,10 @@
 package cn.onesorigin.lemon.console.system.service;
 
 import cn.onesorigin.lemon.console.system.model.entity.UserRoleDO;
+import cn.onesorigin.lemon.console.system.model.query.RoleUserQuery;
+import cn.onesorigin.lemon.console.system.model.resp.RoleUserResp;
+import top.continew.starter.extension.crud.model.query.PageQuery;
+import top.continew.starter.extension.crud.model.resp.PageResp;
 
 import java.util.List;
 
@@ -34,4 +38,36 @@ public interface UserRoleService {
      * @return 用户ID列表
      */
     List<Long> findUserIdsByRoleId(Long roleId);
+
+    /**
+     * 分页查询角色关联的用户列表
+     *
+     * @param query     查询条件
+     * @param pageQuery 分页查询条件
+     * @return 分页查询结果
+     */
+    PageResp<RoleUserResp> pageUser(RoleUserQuery query, PageQuery pageQuery);
+
+    /**
+     * 删除用户角色关联
+     *
+     * @param ids 用户角色关联ID列表
+     */
+    void deleteByIds(List<Long> ids);
+
+    /**
+     * 批量分配角色给用户
+     *
+     * @param roleId  角色ID
+     * @param userIds 用户ID列表
+     */
+    void assignRoleToUsers(Long roleId, List<Long> userIds);
+
+    /**
+     * 判断角色ID列表是否有关联用户
+     *
+     * @param roleIds 角色ID列表
+     * @return 角色是否有关联用户
+     */
+    boolean isRoleIdExists(List<Long> roleIds);
 }

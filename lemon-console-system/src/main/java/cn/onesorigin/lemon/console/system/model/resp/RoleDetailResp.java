@@ -1,5 +1,6 @@
 package cn.onesorigin.lemon.console.system.model.resp;
 
+import cn.idev.excel.annotation.ExcelIgnoreUnannotated;
 import cn.idev.excel.annotation.ExcelProperty;
 import cn.onesorigin.lemon.console.common.base.model.resp.BaseDetailResp;
 import cn.onesorigin.lemon.console.common.enums.DataScopeEnum;
@@ -19,36 +20,42 @@ import java.util.List;
  */
 @Data
 @FieldDefaults(level = AccessLevel.PRIVATE)
+@ExcelIgnoreUnannotated
 @Schema(description = "角色详情响应参数")
 public class RoleDetailResp extends BaseDetailResp {
     /**
      * 名称
      */
     @Schema(description = "名称", example = "测试人员")
+    @ExcelProperty(value = "名称", index = 2)
     String name;
 
     /**
      * 编码
      */
     @Schema(description = "编码", example = "test")
+    @ExcelProperty(value = "编码", index = 3)
     String code;
 
     /**
      * 数据权限
      */
     @Schema(description = "数据权限", example = "5")
+    @ExcelProperty(value = "数据权限", converter = ExcelBaseEnumConverter.class, index = 5)
     DataScopeEnum dataScope;
 
     /**
      * 排序
      */
     @Schema(description = "排序", example = "1")
+    @ExcelProperty(value = "排序", index = 6)
     Integer sort;
 
     /**
      * 是否为系统内置数据
      */
     @Schema(description = "是否为系统内置数据", example = "false")
+    @ExcelProperty(value = "系统内置", index = 7)
     Boolean isSystem;
 
     /**
@@ -67,6 +74,7 @@ public class RoleDetailResp extends BaseDetailResp {
      * 描述
      */
     @Schema(description = "描述", example = "测试人员描述信息")
+    @ExcelProperty(value = "描述", index = 8)
     String description;
 
     /**
