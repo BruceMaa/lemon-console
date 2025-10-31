@@ -90,7 +90,7 @@ public class RoleController extends BaseController<RoleService, RoleResp, RoleDe
 
     @Operation(summary = "取消分配用户", description = "批量取消分配角色给用户")
     @SaCheckPermission("system:roles:unassign")
-    @DeleteMapping("/user")
+    @DeleteMapping("/users")
     public void unassignFromUsers(@RequestBody @NotEmpty(message = "用户列表不能为空") List<Long> userRoleIds) {
         userRoleService.deleteByIds(userRoleIds);
     }
@@ -98,7 +98,7 @@ public class RoleController extends BaseController<RoleService, RoleResp, RoleDe
     @Operation(summary = "查询关联用户ID", description = "查询角色关联的用户ID列表")
     @Parameter(name = "id", description = "ID", example = "1", in = ParameterIn.PATH)
     @SaCheckPermission("system:roles:list")
-    @GetMapping("/{id}/user-id")
+    @GetMapping("/{id}/user-ids")
     public List<Long> listUserId(@PathVariable("id") Long id) {
         return userRoleService.findUserIdsByRoleId(id);
     }

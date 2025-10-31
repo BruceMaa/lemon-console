@@ -74,4 +74,20 @@ public interface RoleService extends BaseService<RoleResp, RoleDetailResp, RoleQ
      * @param userIds 用户ID列表
      */
     void assignToUsers(Long id, List<Long> userIds);
+
+    /**
+     * 根据角色名称列表查询角色数量
+     *
+     * @param roleNames 角色名称列表
+     * @return 角色数量
+     */
+    int countByNames(List<String> roleNames);
+
+    /**
+     * 根据角色名称列表查询角色
+     *
+     * @param list 角色名称列表
+     * @return 角色列表
+     */
+    List<RoleDO> findByNames(List<String> list);
 }

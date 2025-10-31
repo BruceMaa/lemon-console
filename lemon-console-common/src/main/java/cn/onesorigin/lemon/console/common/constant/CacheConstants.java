@@ -44,4 +44,9 @@ public interface CacheConstants {
      * 角色菜单缓存键前缀
      */
     String ROLE_MENU_KEY_PREFIX = "ROLE_MENU" + DELIMITER;
+
+    /**
+     * 数据导入临时会话key
+     */
+    String DATA_IMPORT_KEY = "SYSTEM" + DELIMITER + "DATA_IMPORT" + DELIMITER;
 }

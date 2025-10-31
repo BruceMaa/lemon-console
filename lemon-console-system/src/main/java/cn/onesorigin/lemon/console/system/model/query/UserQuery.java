@@ -37,7 +37,7 @@ public class UserQuery {
      */
     @Schema(description = "创建时间", example = "2023-08-08 00:00:00,2023-08-08 23:59:59")
     @Size(max = 2, message = "创建时间必须是一个范围")
-    List<LocalDateTime> createTime;
+    List<LocalDateTime> createdAt;
 
     /**
      * 部门 ID

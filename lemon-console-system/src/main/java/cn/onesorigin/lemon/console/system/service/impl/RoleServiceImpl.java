@@ -2,6 +2,7 @@ package cn.onesorigin.lemon.console.system.service.impl;
 
 import cn.crane4j.annotation.ContainerMethod;
 import cn.hutool.core.collection.CollUtil;
+import cn.hutool.core.convert.Convert;
 import cn.onesorigin.lemon.console.common.base.service.impl.BaseServiceImpl;
 import cn.onesorigin.lemon.console.common.constant.CacheConstants;
 import cn.onesorigin.lemon.console.common.constant.ContainerConstants;
@@ -194,6 +195,22 @@ public class RoleServiceImpl extends BaseServiceImpl<RoleMapper, RoleDO, RoleRes
         userRoleService.assignRoleToUsers(id, userIds);
         // 更新用户上下文
         this.updateUserContext(id);
+    }
+
+    @Override
+    public int countByNames(List<String> roleNames) {
+        if (CollUtil.isEmpty(roleNames)) {
+            return 0;
+        }
+        return Convert.toInt(baseMapper.lambdaQuery().in(RoleDO::getName, roleNames).count(), 0);
+    }
+
+    @Override
+    public List<RoleDO> findByNames(List<String> list) {
+        if (CollUtil.isEmpty(list)) {
+            return List.of();
+        }
+        return baseMapper.lambdaQuery().in(RoleDO::getName, list).list();
     }
 
     /**

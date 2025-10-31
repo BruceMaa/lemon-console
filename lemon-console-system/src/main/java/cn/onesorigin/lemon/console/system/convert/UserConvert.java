@@ -2,6 +2,7 @@ package cn.onesorigin.lemon.console.system.convert;
 
 import cn.onesorigin.lemon.console.common.context.UserContext;
 import cn.onesorigin.lemon.console.system.model.entity.UserDO;
+import cn.onesorigin.lemon.console.system.model.req.UserImportRowReq;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.MappingTarget;
@@ -25,4 +26,17 @@ public interface UserConvert {
     @Mapping(target = "clientType", ignore = true)
     @Mapping(target = "clientId", ignore = true)
     void update(UserDO userDO, @MappingTarget UserContext userContext);
+
+    @Mapping(target = "status", ignore = true)
+    @Mapping(target = "pwdResetTime", ignore = true)
+    @Mapping(target = "modifiedBy", ignore = true)
+    @Mapping(target = "modifiedAt", ignore = true)
+    @Mapping(target = "isSystem", ignore = true)
+    @Mapping(target = "id", ignore = true)
+    @Mapping(target = "deptId", ignore = true)
+    @Mapping(target = "createdBy", ignore = true)
+    @Mapping(target = "createdAt", ignore = true)
+    @Mapping(target = "avatar", ignore = true)
+    @Mapping(target = "gender", ignore = true)
+    UserDO toDO(UserImportRowReq row);
 }

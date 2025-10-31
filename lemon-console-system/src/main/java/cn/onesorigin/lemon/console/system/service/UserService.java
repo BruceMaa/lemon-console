@@ -3,12 +3,16 @@ package cn.onesorigin.lemon.console.system.service;
 import cn.onesorigin.lemon.console.common.base.service.BaseService;
 import cn.onesorigin.lemon.console.system.model.entity.UserDO;
 import cn.onesorigin.lemon.console.system.model.query.UserQuery;
-import cn.onesorigin.lemon.console.system.model.req.UserBasicInfoUpdateReq;
-import cn.onesorigin.lemon.console.system.model.req.UserReq;
+import cn.onesorigin.lemon.console.system.model.req.*;
 import cn.onesorigin.lemon.console.system.model.resp.UserDetailResp;
+import cn.onesorigin.lemon.console.system.model.resp.UserImportParseResp;
+import cn.onesorigin.lemon.console.system.model.resp.UserImportResp;
 import cn.onesorigin.lemon.console.system.model.resp.UserResp;
+import jakarta.servlet.http.HttpServletResponse;
+import org.springframework.web.multipart.MultipartFile;
 import top.continew.starter.data.service.IService;
 
+import java.io.IOException;
 import java.util.List;
 
 /**
@@ -76,4 +80,43 @@ public interface UserService extends BaseService<UserResp, UserDetailResp, UserQ
      * @return 用户数量
      */
     Long countByDeptIds(List<Long> deptIds);
+
+    /**
+     * 下载用户导入模板
+     *
+     * @param response 响应对象
+     */
+    void downloadImportTemplate(HttpServletResponse response) throws IOException;
+
+    /**
+     * 解析导入数据
+     *
+     * @param file 导入文件
+     * @return 解析结果
+     */
+    UserImportParseResp parseImport(MultipartFile file);
+
+    /**
+     * 导入数据
+     *
+     * @param req 请求参数
+     * @return 导入结果
+     */
+    UserImportResp importUser(UserImportReq req);
+
+    /**
+     * 重置密码
+     *
+     * @param req 请求参数
+     * @param id  ID
+     */
+    void resetPassword(UserPasswordResetReq req, Long id);
+
+    /**
+     * 修改角色
+     *
+     * @param updateReq 修改信息
+     * @param id        ID
+     */
+    void updateRole(UserRoleUpdateReq updateReq, Long id);
 }

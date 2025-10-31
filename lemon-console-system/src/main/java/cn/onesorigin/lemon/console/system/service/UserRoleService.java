@@ -56,6 +56,13 @@ public interface UserRoleService {
     void deleteByIds(List<Long> ids);
 
     /**
+     * 删除用户角色关联
+     *
+     * @param userIds 用户ID列表
+     */
+    void deleteByUserIds(List<Long> userIds);
+
+    /**
      * 批量分配角色给用户
      *
      * @param roleId  角色ID
@@ -70,4 +77,20 @@ public interface UserRoleService {
      * @return 角色是否有关联用户
      */
     boolean isRoleIdExists(List<Long> roleIds);
+
+    /**
+     * 批量分配角色给指定用户
+     *
+     * @param roleIds 角色ID列表
+     * @param userId  用户ID
+     * @return 是否分配成功
+     */
+    boolean assignRolesToUser(List<Long> roleIds, Long userId);
+
+    /**
+     * 批量保存用户角色关联
+     *
+     * @param userRoleDOList 用户角色关联列表
+     */
+    void saveBatch(List<UserRoleDO> userRoleDOList);
 }
