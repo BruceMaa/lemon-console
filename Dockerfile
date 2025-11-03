@@ -4,11 +4,22 @@
 FROM bellsoft/liberica-openjdk-debian:17.0.14
 
 COPY lemon-console-server/target/app/* /app/
+
+# 设置文件权限
+RUN chmod +x /app/bin/lemon-console.jar
+
+# 检查文件是否存在（构建时验证）
+RUN ls -la /app/bin
+RUN ls -la /app/config
+RUN ls -la /app/lib
+
 WORKDIR /app/bin
+
+EXPOSE 8080
 
 ENTRYPOINT ["java", \
             "-jar", \
             "-XX:+UseZGC", \
             "-Djava.security.egd=file:/dev/./urandom", \
-            "-Dspring.profiles.active=dev", \
+            "-Dspring.profiles.active=prod", \
             "lemon-console.jar"]
