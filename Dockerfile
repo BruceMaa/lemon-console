@@ -3,9 +3,9 @@
 # 若对镜像大小有严格要求，可将当前镜像替换为 alpine 版本
 FROM bellsoft/liberica-openjdk-debian:17.0.14
 
-COPY ./lemon-console-server/target/app/bin/ /app/
-COPY ./lemon-console-server/target/app/config/ /app/
-COPY ./lemon-console-server/target/app/lib/ /app/
+COPY ./lemon-console-server/target/app/bin/ /app/bin/
+COPY ./lemon-console-server/target/app/config/ /app/config/
+COPY ./lemon-console-server/target/app/lib/ /app/lib/
 
 # 检查文件是否存在（构建时验证）
 RUN ls -la /app
