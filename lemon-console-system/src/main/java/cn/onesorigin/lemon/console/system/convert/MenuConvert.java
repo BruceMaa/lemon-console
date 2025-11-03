@@ -19,6 +19,7 @@ public interface MenuConvert {
 
     MenuConvert INSTANCE = Mappers.getMapper(MenuConvert.class);
 
+    @Mapping(target = "modifiedUsername", ignore = true)
     @Mapping(target = "disabled", ignore = true)
     @Mapping(target = "createdUsername", ignore = true)
     MenuResp toResp(MenuDO menuDO);

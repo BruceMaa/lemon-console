@@ -3,15 +3,15 @@
 # 若对镜像大小有严格要求，可将当前镜像替换为 alpine 版本
 FROM bellsoft/liberica-openjdk-debian:17.0.14
 
-COPY lemon-console-server/target/app/* /app/
-
-# 设置文件权限
-RUN chmod +x /app/bin/lemon-console.jar
+COPY ./lemon-console-server/target/app/* /app/
 
 # 检查文件是否存在（构建时验证）
 RUN ls -la /app/bin
 RUN ls -la /app/config
 RUN ls -la /app/lib
+
+# 设置文件权限
+RUN chmod +x /app/bin/lemon-console.jar
 
 WORKDIR /app/bin
 
