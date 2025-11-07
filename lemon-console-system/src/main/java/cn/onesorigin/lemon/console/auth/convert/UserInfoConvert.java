@@ -1,6 +1,9 @@
 package cn.onesorigin.lemon.console.auth.convert;
 
+import cn.onesorigin.lemon.console.auth.model.resp.OnlineUserResp;
 import cn.onesorigin.lemon.console.auth.model.resp.UserInfoResp;
+import cn.onesorigin.lemon.console.common.context.UserContext;
+import cn.onesorigin.lemon.console.common.context.UserExtraContext;
 import cn.onesorigin.lemon.console.system.model.resp.UserDetailResp;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
@@ -22,4 +25,9 @@ public interface UserInfoConvert {
     @Mapping(target = "pwdExpired", ignore = true)
     @Mapping(target = "permissions", ignore = true)
     UserInfoResp toResp(UserDetailResp userDetailResp);
+
+    @Mapping(target = "nickname", ignore = true)
+    @Mapping(target = "lastActiveTime", ignore = true)
+    @Mapping(target = "token", source = "token")
+    OnlineUserResp toOnlineUserResp(UserContext userContext, UserExtraContext userExtraContext, String token);
 }
