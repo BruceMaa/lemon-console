@@ -18,6 +18,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
+import top.continew.starter.log.annotation.Log;
 
 import java.util.List;
 
@@ -28,6 +29,7 @@ import java.util.List;
  * @since 2025-09-04 16:00
  */
 @Tag(name = "认证管理")
+@Log(module = "登录")
 @RequiredArgsConstructor
 @RestController
 @RequestMapping(path = "/auth")
@@ -52,6 +54,7 @@ public class AuthController {
         return loginId;
     }
 
+    @Log(ignore = true)
     @Operation(summary = "获取用户信息", description = "获取登录用户信息")
     @GetMapping("/user/info")
     public UserInfoResp getUserInfo() {
@@ -64,6 +67,7 @@ public class AuthController {
         return userInfoResp;
     }
 
+    @Log(ignore = true)
     @Operation(summary = "获取路由信息", description = "获取登录用户的路由信息")
     @GetMapping("/user/route")
     public List<RouteResp> listRoute() {

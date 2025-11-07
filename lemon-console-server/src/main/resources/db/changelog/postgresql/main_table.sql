@@ -411,3 +411,53 @@ CREATE TABLE IF NOT EXISTS "sys_role_dept" (
 COMMENT ON COLUMN "sys_role_dept"."role_id" IS '角色ID';
 COMMENT ON COLUMN "sys_role_dept"."dept_id" IS '部门ID';
 COMMENT ON TABLE  "sys_role_dept"           IS '角色和部门关联表';
+
+
+CREATE TABLE IF NOT EXISTS "sys_log" (
+    "id"               int8         NOT NULL,
+    "trace_id"         varchar(255) DEFAULT NULL,
+    "description"      varchar(255) NOT NULL,
+    "module"           varchar(100) NOT NULL,
+    "request_url"      varchar(512) NOT NULL,
+    "request_method"   varchar(10)  NOT NULL,
+    "request_headers"  text         DEFAULT NULL,
+    "request_body"     text         DEFAULT NULL,
+    "status_code"      int4         NOT NULL,
+    "response_headers" text         DEFAULT NULL,
+    "response_body"    text         DEFAULT NULL,
+    "time_taken"       int8         NOT NULL,
+    "ip"               varchar(100) DEFAULT NULL,
+    "address"          varchar(255) DEFAULT NULL,
+    "browser"          varchar(100) DEFAULT NULL,
+    "os"               varchar(100) DEFAULT NULL,
+    "status"           int2         NOT NULL DEFAULT 1,
+    "error_msg"        text         DEFAULT NULL,
+    "created_by"      int8         DEFAULT NULL,
+    "created_at"      timestamp    NOT NULL,
+    PRIMARY KEY ("id")
+);
+CREATE INDEX "idx_log_module"      ON "sys_log" ("module");
+CREATE INDEX "idx_log_ip"          ON "sys_log" ("ip");
+CREATE INDEX "idx_log_address"     ON "sys_log" ("address");
+CREATE INDEX "idx_log_created_at"  ON "sys_log" ("created_at");
+COMMENT ON COLUMN "sys_log"."id"               IS 'ID';
+COMMENT ON COLUMN "sys_log"."trace_id"         IS '链路ID';
+COMMENT ON COLUMN "sys_log"."description"      IS '日志描述';
+COMMENT ON COLUMN "sys_log"."module"           IS '所属模块';
+COMMENT ON COLUMN "sys_log"."request_url"      IS '请求URL';
+COMMENT ON COLUMN "sys_log"."request_method"   IS '请求方式';
+COMMENT ON COLUMN "sys_log"."request_headers"  IS '请求头';
+COMMENT ON COLUMN "sys_log"."request_body"     IS '请求体';
+COMMENT ON COLUMN "sys_log"."status_code"      IS '状态码';
+COMMENT ON COLUMN "sys_log"."response_headers" IS '响应头';
+COMMENT ON COLUMN "sys_log"."response_body"    IS '响应体';
+COMMENT ON COLUMN "sys_log"."time_taken"       IS '耗时（ms）';
+COMMENT ON COLUMN "sys_log"."ip"               IS 'IP';
+COMMENT ON COLUMN "sys_log"."address"          IS 'IP归属地';
+COMMENT ON COLUMN "sys_log"."browser"          IS '浏览器';
+COMMENT ON COLUMN "sys_log"."os"               IS '操作系统';
+COMMENT ON COLUMN "sys_log"."status"           IS '状态（1：成功；2：失败）';
+COMMENT ON COLUMN "sys_log"."error_msg"        IS '错误信息';
+COMMENT ON COLUMN "sys_log"."created_by"      IS '创建人';
+COMMENT ON COLUMN "sys_log"."created_at"      IS '创建时间';
+COMMENT ON TABLE  "sys_log"                    IS '系统日志表';

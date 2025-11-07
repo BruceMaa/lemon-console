@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.onesorigin.lemon.console.system.mapper.LogMapper">
+    <select id="findPage" resultType="cn.onesorigin.lemon.console.system.model.resp.LogResp">
+        SELECT
+        t1.id,
+        t1.description,
+        t1.module,
+        t1.time_taken,
+        t1.ip,
+        t1.address,
+        t1.browser,
+        t1.os,
+        t1.status,
+        t1.error_msg,
+        t1.created_by,
+        t1.created_at,
+        t2.nickname AS createdUsername
+        FROM sys_log AS t1
+        LEFT JOIN sys_user AS t2 ON t2.id = t1.created_by
+        ${ew.customSqlSegment}
+    </select>
+    <select id="findList" resultType="cn.onesorigin.lemon.console.system.model.resp.LogResp">
+        SELECT
+        t1.id,
+        t1.description,
+        t1.module,
+        t1.time_taken,
+        t1.ip,
+        t1.address,
+        t1.browser,
+        t1.os,
+        t1.status,
+        t1.error_msg,
+        t1.created_by,
+        t1.created_at,
+        t2.nickname AS createdUsername
+        FROM sys_log AS t1
+        LEFT JOIN sys_user AS t2 ON t2.id = t1.created_by
+        ${ew.customSqlSegment}
+    </select>
+</mapper>

@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import top.continew.starter.cache.redisson.util.RedisUtils;
 import top.continew.starter.captcha.graphic.core.GraphicCaptchaService;
+import top.continew.starter.log.annotation.Log;
 
 import java.time.Duration;
 import java.time.LocalDateTime;
@@ -44,6 +45,7 @@ public class CaptchaController {
     @Value("${lemon.console.captcha.expiration-in-seconds:120}")
     private long captchaExpirationInSeconds;
 
+    @Log(ignore = true)
     @Operation(summary = "获取图片验证码", description = "获取图片验证码（Base64编码，带图片格式：data:image/gif;base64）")
     @GetMapping("/image")
     public CaptchaResp getImageCaptcha() {

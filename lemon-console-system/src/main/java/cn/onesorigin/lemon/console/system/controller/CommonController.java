@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import top.continew.starter.extension.crud.model.resp.LabelValueResp;
+import top.continew.starter.log.annotation.Log;
 
 import java.io.Serializable;
 import java.util.List;
@@ -31,6 +32,7 @@ import java.util.List;
 @Tag(name = "公共接口")
 @Slf4j
 @RequiredArgsConstructor
+@Log(ignore = true)
 @RestController("systemCommonController")
 @RequestMapping(path = "/system/common")
 public class CommonController {

@@ -11,6 +11,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.RestController;
 import top.continew.starter.extension.crud.annotation.CrudRequestMapping;
 import top.continew.starter.extension.crud.enums.Api;
+import top.continew.starter.log.annotation.Log;
 
 /**
  * 字典项 控制器
@@ -19,6 +20,7 @@ import top.continew.starter.extension.crud.enums.Api;
  * @since 2025-09-18 15:23
  */
 @Tag(name = "字典项管理")
+@Log(module = "字典管理")
 @Slf4j
 @RequiredArgsConstructor
 @RestController
