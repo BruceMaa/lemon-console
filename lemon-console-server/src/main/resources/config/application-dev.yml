@@ -163,4 +163,4 @@ sa-token.extension:
     - /swagger-resources/**
     - /*/api-docs/**
     # 本地存储资源
-    - /file/**
+    - /files/**

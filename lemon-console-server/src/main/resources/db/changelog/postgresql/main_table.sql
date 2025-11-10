@@ -167,7 +167,7 @@ CREATE TABLE IF NOT EXISTS "sys_file" (
     "extension"          varchar(100) DEFAULT NULL,
     "content_type"       varchar(255) DEFAULT NULL,
     "type"               int2         NOT NULL DEFAULT 1,
-    "sha256"       		 varchar(256) NOT NULL,
+    "sha256"       		 varchar(256) DEFAULT NULL,
     "metadata"           text         DEFAULT NULL,
     "thumbnail_name"     varchar(255) DEFAULT NULL,
     "thumbnail_size"     int8         DEFAULT NULL,
