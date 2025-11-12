@@ -20,7 +20,7 @@ import java.time.LocalDateTime;
  * @since 2025-09-04 17:18
  */
 @Data
-@FieldDefaults(level = AccessLevel.PRIVATE)
+@FieldDefaults(level = AccessLevel.PROTECTED)
 public class BaseDetailResp extends BaseResp {
 
     /**

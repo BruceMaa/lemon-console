@@ -1,16 +1,11 @@
 package cn.onesorigin.lemon.console.system.model.resp;
 
-import cn.crane4j.annotation.Assemble;
-import cn.crane4j.annotation.condition.ConditionOnPropertyNotNull;
-import cn.onesorigin.lemon.console.common.constant.ContainerConstants;
+import cn.onesorigin.lemon.console.common.base.model.resp.BaseResp;
 import cn.onesorigin.lemon.console.system.enums.LogStatusEnum;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.AccessLevel;
 import lombok.Data;
 import lombok.experimental.FieldDefaults;
-
-import java.time.LocalDateTime;
 
 /**
  * 日志详情响应参数
@@ -21,13 +16,7 @@ import java.time.LocalDateTime;
 @Schema(description = "日志详情响应参数")
 @Data
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class LogDetailResp {
-
-    /**
-     * ID
-     */
-    @Schema(description = "ID", example = "1")
-    Long id;
+public class LogDetailResp extends BaseResp {
 
     /**
      * 链路 ID
@@ -131,23 +120,4 @@ public class LogDetailResp {
     @Schema(description = "错误信息")
     String errorMsg;
 
-    /**
-     * 创建人
-     */
-    @JsonIgnore
-    @ConditionOnPropertyNotNull
-    @Assemble(prop = ":createdUsername", container = ContainerConstants.USER_NICKNAME)
-    private Long createdBy;
-
-    /**
-     * 创建人
-     */
-    @Schema(description = "创建人", example = "张三")
-    private String createdUsername;
-
-    /**
-     * 创建时间
-     */
-    @Schema(description = "创建时间", example = "2023-08-08 08:08:08", type = "string")
-    private LocalDateTime createdAt;
 }

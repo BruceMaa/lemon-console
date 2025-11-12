@@ -16,6 +16,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.SpringBootVersion;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.web.ServerProperties;
+import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 import top.continew.starter.core.autoconfigure.application.ApplicationProperties;
@@ -35,6 +36,7 @@ import top.continew.starter.web.model.R;
 @EnableGlobalResponse
 @EnableFileStorage
 @EnableMethodCache(basePackages = "cn.onesorigin.lemon.console")
+@EnableScheduling
 @RestController
 @SpringBootApplication
 public class ConsoleApplication implements ApplicationRunner {

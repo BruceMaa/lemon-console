@@ -461,3 +461,84 @@ COMMENT ON COLUMN "sys_log"."error_msg"        IS '错误信息';
 COMMENT ON COLUMN "sys_log"."created_by"      IS '创建人';
 COMMENT ON COLUMN "sys_log"."created_at"      IS '创建时间';
 COMMENT ON TABLE  "sys_log"                    IS '系统日志表';
+
+
+CREATE TABLE IF NOT EXISTS "sys_notice" (
+    "id"             int8         NOT NULL,
+    "title"          varchar(150) NOT NULL,
+    "content"        text         NOT NULL,
+    "type"           varchar(30)  NOT NULL,
+    "notice_scope"   int2         NOT NULL DEFAULT 1,
+    "notice_users"   json         DEFAULT NULL,
+    "notice_methods" json         DEFAULT NULL,
+    "is_timing"      bool         NOT NULL DEFAULT false,
+    "publish_time"   timestamp    DEFAULT NULL,
+    "is_top"         bool         NOT NULL DEFAULT false,
+    "status"         int2         NOT NULL DEFAULT 1,
+    "created_by"    int8         NOT NULL,
+    "created_at"    timestamp    NOT NULL,
+    "modified_by"    int8         DEFAULT NULL,
+    "modified_at"    timestamp    DEFAULT NULL,
+    PRIMARY KEY ("id")
+);
+CREATE INDEX "idx_notice_created_by" ON "sys_notice" ("created_by");
+CREATE INDEX "idx_notice_modified_by" ON "sys_notice" ("modified_by");
+COMMENT ON COLUMN "sys_notice"."id"             IS 'ID';
+COMMENT ON COLUMN "sys_notice"."title"          IS '标题';
+COMMENT ON COLUMN "sys_notice"."content"        IS '内容';
+COMMENT ON COLUMN "sys_notice"."type"           IS '分类';
+COMMENT ON COLUMN "sys_notice"."notice_scope"   IS '通知范围（1：所有人；2：指定用户）';
+COMMENT ON COLUMN "sys_notice"."notice_users"   IS '通知用户';
+COMMENT ON COLUMN "sys_notice"."notice_methods" IS '通知方式（1：系统消息；2：登录弹窗）';
+COMMENT ON COLUMN "sys_notice"."is_timing"      IS '是否定时';
+COMMENT ON COLUMN "sys_notice"."publish_time"   IS '发布时间';
+COMMENT ON COLUMN "sys_notice"."is_top"         IS '是否置顶';
+COMMENT ON COLUMN "sys_notice"."status"         IS '状态（1：草稿；2：待发布；3：已发布）';
+COMMENT ON COLUMN "sys_notice"."created_by"    IS '创建人';
+COMMENT ON COLUMN "sys_notice"."created_at"    IS '创建时间';
+COMMENT ON COLUMN "sys_notice"."modified_by"    IS '修改人';
+COMMENT ON COLUMN "sys_notice"."modified_at"    IS '修改时间';
+COMMENT ON TABLE  "sys_notice"                  IS '公告表';
+
+CREATE TABLE IF NOT EXISTS "sys_notice_log" (
+    "notice_id" int8      NOT NULL,
+    "user_id"   int8      NOT NULL,
+    "read_time" timestamp DEFAULT NULL,
+    PRIMARY KEY ("notice_id", "user_id")
+);
+COMMENT ON COLUMN "sys_notice_log"."notice_id" IS '消息ID';
+COMMENT ON COLUMN "sys_notice_log"."user_id"   IS '用户ID';
+COMMENT ON COLUMN "sys_notice_log"."read_time" IS '读取时间';
+COMMENT ON TABLE  "sys_notice_log"             IS '公告日志表';
+
+CREATE TABLE IF NOT EXISTS "sys_message" (
+    "id"          int8         NOT NULL,
+    "title"       varchar(50)  NOT NULL,
+    "content"     text         DEFAULT NULL,
+    "type"        int2         NOT NULL DEFAULT 1,
+    "path"        varchar(255) DEFAULT NULL,
+    "scope"       int2         NOT NULL DEFAULT 1,
+    "users"       json         DEFAULT NULL,
+    "created_at" timestamp    NOT NULL,
+    PRIMARY KEY ("id")
+);
+COMMENT ON COLUMN "sys_message"."id"          IS 'ID';
+COMMENT ON COLUMN "sys_message"."title"       IS '标题';
+COMMENT ON COLUMN "sys_message"."content"     IS '内容';
+COMMENT ON COLUMN "sys_message"."type"        IS '类型（1：系统消息；2：安全消息）';
+COMMENT ON COLUMN "sys_message"."path"        IS '跳转路径';
+COMMENT ON COLUMN "sys_message"."scope"       IS '通知范围（1：所有人；2：指定用户）';
+COMMENT ON COLUMN "sys_message"."users"       IS '通知用户';
+COMMENT ON COLUMN "sys_message"."created_at" IS '创建时间';
+COMMENT ON TABLE  "sys_message"               IS '消息表';
+
+CREATE TABLE IF NOT EXISTS "sys_message_log" (
+    "message_id" int8      NOT NULL,
+    "user_id"    int8      NOT NULL,
+    "read_time"  timestamp DEFAULT NULL,
+    PRIMARY KEY ("message_id", "user_id")
+);
+COMMENT ON COLUMN "sys_message_log"."message_id" IS '消息ID';
+COMMENT ON COLUMN "sys_message_log"."user_id"    IS '用户ID';
+COMMENT ON COLUMN "sys_message_log"."read_time"  IS '读取时间';
+COMMENT ON TABLE  "sys_message_log"              IS '消息日志表';

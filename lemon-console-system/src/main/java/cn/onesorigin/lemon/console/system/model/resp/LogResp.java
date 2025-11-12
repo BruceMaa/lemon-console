@@ -1,13 +1,11 @@
 package cn.onesorigin.lemon.console.system.model.resp;
 
+import cn.onesorigin.lemon.console.common.base.model.resp.BaseResp;
 import cn.onesorigin.lemon.console.system.enums.LogStatusEnum;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.AccessLevel;
 import lombok.Data;
 import lombok.experimental.FieldDefaults;
-
-import java.time.LocalDateTime;
 
 /**
  * 系统日志响应参数
@@ -18,13 +16,7 @@ import java.time.LocalDateTime;
 @Schema(description = "系统日志响应参数")
 @Data
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class LogResp {
-
-    /**
-     * ID
-     */
-    @Schema(description = "ID", example = "1")
-    Long id;
+public class LogResp extends BaseResp {
 
     /**
      * 日志描述
@@ -80,21 +72,4 @@ public class LogResp {
     @Schema(description = "错误信息")
     String errorMsg;
 
-    /**
-     * 创建人
-     */
-    @JsonIgnore
-    Long createdBy;
-
-    /**
-     * 创建人
-     */
-    @Schema(description = "创建人", example = "张三")
-    String createdUsername;
-
-    /**
-     * 创建时间
-     */
-    @Schema(description = "创建时间", example = "2023-08-08 08:08:08", type = "string")
-    LocalDateTime createdAt;
 }
