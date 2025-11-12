@@ -58,4 +58,16 @@
         </if>
         AND t2.read_time IS NULL
     </select>
+    <select id="findDashboardList"
+            resultType="cn.onesorigin.lemon.console.system.model.resp.DashboardNoticeResp">
+        SELECT
+        id, title, type, is_top
+        FROM sys_notice
+        WHERE status = 3
+        <if test="userId != null">
+            AND (notice_scope = 1 OR (notice_scope = 2 AND notice_users::jsonb @> jsonb_build_array(#{userId}::text)))
+        </if>
+        ORDER BY is_top DESC, publish_time DESC
+        LIMIT 5
+    </select>
 </mapper>

@@ -2,6 +2,7 @@ package cn.onesorigin.lemon.console.system.mapper;
 
 import cn.onesorigin.lemon.console.system.model.entity.NoticeDO;
 import cn.onesorigin.lemon.console.system.model.query.NoticeQuery;
+import cn.onesorigin.lemon.console.system.model.resp.DashboardNoticeResp;
 import cn.onesorigin.lemon.console.system.model.resp.NoticeResp;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
@@ -37,4 +38,12 @@ public interface NoticeMapper extends BaseMapper<NoticeDO> {
      * @return 未读公告ID列表
      */
     List<Long> findUnreadIdsByUserId(@Param("noticeMethod") Integer noticeMethod, @Param("userId") Long userId);
+
+    /**
+     * 查询仪表盘公告列表
+     *
+     * @param userId 用户 ID
+     * @return 仪表盘公告列表
+     */
+    List<DashboardNoticeResp> findDashboardList(Long userId);
 }

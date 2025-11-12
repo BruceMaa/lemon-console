@@ -2,12 +2,14 @@ package cn.onesorigin.lemon.console.system.service.impl;
 
 import cn.hutool.core.collection.CollUtil;
 import cn.onesorigin.lemon.console.common.base.service.impl.BaseServiceImpl;
+import cn.onesorigin.lemon.console.common.context.UserContextHolder;
 import cn.onesorigin.lemon.console.system.enums.*;
 import cn.onesorigin.lemon.console.system.mapper.NoticeMapper;
 import cn.onesorigin.lemon.console.system.model.entity.NoticeDO;
 import cn.onesorigin.lemon.console.system.model.query.NoticeQuery;
 import cn.onesorigin.lemon.console.system.model.req.MessageReq;
 import cn.onesorigin.lemon.console.system.model.req.NoticeReq;
+import cn.onesorigin.lemon.console.system.model.resp.DashboardNoticeResp;
 import cn.onesorigin.lemon.console.system.model.resp.NoticeDetailResp;
 import cn.onesorigin.lemon.console.system.model.resp.NoticeResp;
 import cn.onesorigin.lemon.console.system.service.MessageService;
@@ -152,5 +154,11 @@ public class NoticeServiceImpl extends BaseServiceImpl<NoticeMapper, NoticeDO, N
     @Override
     public void readNotice(Long noticeId, Long userId) {
         noticeLogService.add(List.of(userId), noticeId);
+    }
+
+    @Override
+    public List<DashboardNoticeResp> findDashboard() {
+        Long userId = UserContextHolder.getUserId();
+        return baseMapper.findDashboardList(userId);
     }
 }

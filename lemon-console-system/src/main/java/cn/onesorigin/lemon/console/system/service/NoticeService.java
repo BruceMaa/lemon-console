@@ -5,6 +5,7 @@ import cn.onesorigin.lemon.console.system.enums.NoticeMethodEnum;
 import cn.onesorigin.lemon.console.system.model.entity.NoticeDO;
 import cn.onesorigin.lemon.console.system.model.query.NoticeQuery;
 import cn.onesorigin.lemon.console.system.model.req.NoticeReq;
+import cn.onesorigin.lemon.console.system.model.resp.DashboardNoticeResp;
 import cn.onesorigin.lemon.console.system.model.resp.NoticeDetailResp;
 import cn.onesorigin.lemon.console.system.model.resp.NoticeResp;
 import top.continew.starter.data.service.IService;
@@ -42,4 +43,11 @@ public interface NoticeService extends BaseService<NoticeResp, NoticeDetailResp,
      * @param userId   用户ID
      */
     void readNotice(Long noticeId, Long userId);
+
+    /**
+     * 查询仪表盘公告列表
+     *
+     * @return 仪表盘公告列表
+     */
+    List<DashboardNoticeResp> findDashboard();
 }
