@@ -22,6 +22,7 @@ import top.continew.starter.log.annotation.Log;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * 公共 控制器
@@ -51,7 +52,7 @@ public class CommonController {
                 .stream()
                 .map(option -> new LabelValueResp<>(option.getCode(), option.getValue())
                 )
-                .toList();
+                .collect(Collectors.toList());
     }
 
     @Operation(summary = "查询字典", description = "查询字典列表")
