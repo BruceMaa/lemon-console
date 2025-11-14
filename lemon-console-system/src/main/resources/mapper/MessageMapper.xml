@@ -1,6 +1,16 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="cn.onesorigin.lemon.console.system.mapper.MessageMapper">
+
+    <resultMap id="message" type="cn.onesorigin.lemon.console.system.model.resp.MessageResp">
+        <id property="id" column="id"/>
+    </resultMap>
+    <resultMap id="messageDetail" type="cn.onesorigin.lemon.console.system.model.resp.MessageDetailResp">
+        <id property="id" column="id"/>
+        <result property="users" column="users"
+                typeHandler="com.baomidou.mybatisplus.extension.handlers.JacksonTypeHandler"/>
+    </resultMap>
+
     <select id="findUnreadCountByUserIdAndType" resultType="java.lang.Long">
         SELECT
         COUNT(1)
@@ -13,14 +23,12 @@
             AND t1.type = #{type}
         </if>
     </select>
-    <select id="findPage" resultType="cn.onesorigin.lemon.console.system.model.resp.MessageResp">
+    <select id="findPage" resultMap="message">
         SELECT
         t1.id,
         t1.title,
         t1.type,
         t1.path,
-        t1.scope,
-        t1.users,
         t1.created_at,
         t2.read_time IS NOT NULL AS isRead,
         t2.read_time AS readTime
@@ -42,7 +50,7 @@
         </where>
         ORDER BY t1.created_at DESC
     </select>
-    <select id="findDetailById" resultType="cn.onesorigin.lemon.console.system.model.resp.MessageDetailResp">
+    <select id="findDetailById" resultMap="messageDetail">
         SELECT
         t1.id,
         t1.title,

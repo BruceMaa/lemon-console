@@ -5,3 +5,9 @@ databaseChangeLog:
       file: db/changelog/postgresql/main_column.sql
   - include:
       file: db/changelog/postgresql/main_data.sql
+  - include:
+      file: db/changelog/postgresql/medicine/medicine_table.sql
+  - include:
+      file: db/changelog/postgresql/medicine/medicine_column.sql
+  - include:
+      file: db/changelog/postgresql/medicine/medicine_data.sql

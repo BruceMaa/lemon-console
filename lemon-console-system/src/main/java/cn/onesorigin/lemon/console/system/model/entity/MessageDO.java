@@ -22,7 +22,7 @@ import java.util.List;
  */
 @Data
 @FieldDefaults(level = AccessLevel.PRIVATE)
-@TableName("sys_message")
+@TableName(value = "sys_message", autoResultMap = true)
 public class MessageDO {
 
     /**

@@ -6,7 +6,7 @@ application:
   # 描述
   description: 柠檬控制台
   # 版本
-  version: 1.0.0
+  version: 1.2.1
   starter: 2.13.4
   # 基本包
   base-package: cn.onesorigin.lemon.console

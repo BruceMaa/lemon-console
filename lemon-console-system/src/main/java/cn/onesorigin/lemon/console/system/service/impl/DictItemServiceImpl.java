@@ -102,7 +102,7 @@ public class DictItemServiceImpl extends BaseServiceImpl<DictItemMapper, DictIte
     private <T extends Serializable> List<LabelValueResp<T>> toEnumDict(Class<?> enumClass) {
         Object[] enumConstants = enumClass.getEnumConstants();
         if (ArrayUtil.isEmpty(enumConstants)) {
-            return List.of();
+            return new ArrayList<>(0);
         }
         return Arrays.stream(enumConstants).map(e -> {
             BaseEnum<T> baseEnum = (BaseEnum<T>) e;

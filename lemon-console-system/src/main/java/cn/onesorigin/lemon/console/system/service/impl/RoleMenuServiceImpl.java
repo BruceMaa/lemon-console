@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 import top.continew.starter.core.util.CollUtils;
 import top.continew.starter.data.service.impl.ServiceImpl;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -47,7 +48,7 @@ public class RoleMenuServiceImpl extends ServiceImpl<RoleMenuMapper, RoleMenuDO>
     @Override
     public List<Long> findMenuIdsByRoleIds(List<Long> roleIds) {
         if (CollUtil.isEmpty(roleIds)) {
-            return List.of();
+            return new ArrayList<>(0);
         }
         return baseMapper.lambdaQuery()
                 .select(RoleMenuDO::getMenuId)

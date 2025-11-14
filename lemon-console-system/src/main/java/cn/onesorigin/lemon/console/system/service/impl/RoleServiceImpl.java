@@ -29,10 +29,7 @@ import org.springframework.transaction.annotation.Transactional;
 import top.continew.starter.core.util.CollUtils;
 import top.continew.starter.core.util.validation.CheckUtils;
 
-import java.util.List;
-import java.util.Objects;
-import java.util.Optional;
-import java.util.Set;
+import java.util.*;
 
 /**
  * 角色 业务实现
@@ -150,7 +147,7 @@ public class RoleServiceImpl extends BaseServiceImpl<RoleMapper, RoleDO, RoleRes
     @Override
     public List<RoleDO> findRolesByUserIds(List<Long> ids) {
         if (CollUtil.isEmpty(ids)) {
-            return List.of();
+            return new ArrayList<>(0);
         }
         return baseMapper.lambdaQuery().in(RoleDO::getId, ids).list();
     }
@@ -208,7 +205,7 @@ public class RoleServiceImpl extends BaseServiceImpl<RoleMapper, RoleDO, RoleRes
     @Override
     public List<RoleDO> findByNames(List<String> list) {
         if (CollUtil.isEmpty(list)) {
-            return List.of();
+            return new ArrayList<>(0);
         }
         return baseMapper.lambdaQuery().in(RoleDO::getName, list).list();
     }

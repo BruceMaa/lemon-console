@@ -19,11 +19,13 @@
         <module>lemon-console-server</module>
         <module>lemon-console-system</module>
         <module>lemon-console-common</module>
+        <module>lemon-console-medicine</module>
+        <module>lemon-console-paas</module>
     </modules>
 
     <properties>
         <!-- 项目版本号 -->
-        <revision>1.2.0</revision>
+        <revision>1.2.1</revision>
         <org.mapstruct.version>1.6.3</org.mapstruct.version>
         <lombok-mapstruct-binding.version>0.2.0</lombok-mapstruct-binding.version>
         <jdk.version>17</jdk.version>
@@ -35,6 +37,13 @@
             <dependency>
                 <groupId>cn.onesorigin</groupId>
                 <artifactId>lemon-console-server</artifactId>
+                <version>${revision}</version>
+            </dependency>
+
+            <!-- 药品管理模块（存放药品的基本信息，库存管理，追溯码，药品知识库，抗菌药物专项管理） -->
+            <dependency>
+                <groupId>cn.onesorigin</groupId>
+                <artifactId>lemon-console-medicine</artifactId>
                 <version>${revision}</version>
             </dependency>
 

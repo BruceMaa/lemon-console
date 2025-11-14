@@ -3,9 +3,7 @@ package cn.onesorigin.lemon.console.system.convert;
 import cn.onesorigin.lemon.console.common.context.UserContext;
 import cn.onesorigin.lemon.console.system.model.entity.UserDO;
 import cn.onesorigin.lemon.console.system.model.req.UserImportRowReq;
-import org.mapstruct.Mapper;
-import org.mapstruct.Mapping;
-import org.mapstruct.MappingTarget;
+import org.mapstruct.*;
 import org.mapstruct.factory.Mappers;
 
 /**
@@ -19,6 +17,7 @@ public interface UserConvert {
 
     UserConvert INSTANCE = Mappers.getMapper(UserConvert.class);
 
+    @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
     @Mapping(target = "roles", ignore = true)
     @Mapping(target = "roleCodes", ignore = true)
     @Mapping(target = "permissionCodes", ignore = true)
